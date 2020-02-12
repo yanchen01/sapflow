@@ -7,17 +7,11 @@ const express = require('express'),
 const app = express();
 
 // ------------------------------------------ //
-// 			MODELS CONFIG
-// ------------------------------------------ //
-const Tree = require('./models/tree');
-const Sensor = require('./models/sensor');
-
-// ------------------------------------------ //
 // 			MONGOOSE CONFIGURATION
 // ------------------------------------------ //
-// require('dotenv').config();
-/* const Mongo_URI = process.env.ATLAS_URI || 'mongodb://localhost/sapflow'; */
-const Mongo_URI = 'mongodb://localhost/sapflow';
+require('dotenv').config();
+const Mongo_URI = process.env.ATLAS_URI;
+// const Mongo_URI = 'mongodb://localhost/sapflow';
 mongoose
 	.connect(Mongo_URI, {
 		useNewUrlParser: true,
@@ -31,6 +25,12 @@ mongoose
 	.catch((err) => {
 		console.log(err);
 	});
+
+// ------------------------------------------ //
+// 			MODELS CONFIG
+// ------------------------------------------ //
+const Tree = require('./models/tree');
+const Sensor = require('./models/sensor');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -78,7 +78,7 @@ app.post('/sensor', (req, res) => {
 		time: req.body.metadata.time,
 		downlink_url: req.body.downlink_url
 	};
-	
+
 	Tree.create(newTree, (err, result) => {
 		if (err) {
 			console.log(err);
@@ -90,7 +90,7 @@ app.post('/sensor', (req, res) => {
 	res.send(req.body);
 });
 
-/* seedDB(); // seed the database */
+// seedDB(); // seed the database
 app.listen(process.env.PORT || 3000, () => {
 	console.log('Hutyra Lab Server has started on port 3000');
 });
