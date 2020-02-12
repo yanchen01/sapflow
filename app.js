@@ -59,7 +59,7 @@ app.get('/tree/:id', (req, res) => {
 		});
 });
 
-// SHOW - information about a tree
+// POST - collect data from sensor
 app.post('/sensor', (req, res) => {
 	console.log(req.body);
 	const sensorData = {
