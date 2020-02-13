@@ -78,9 +78,9 @@ app.post('/sensor', (req, res) => {
 		downlink_url: req.body.downlink_url
 	};
 
-	Sensor.findOneAndUpdate({ dev_id: sensorData.dev_id }, sensorData).then((doc) => {}).catch((err) => {
+/* 	Sensor.findOneAndUpdate({ dev_id: sensorData.dev_id }, sensorData).then((doc) => {}).catch((err) => {
 		console.log(err);
-	});
+	}); */
 
 	Sensor.findOne({ dev_id: sensorData.dev_id })
 		.then((sensor) => {
