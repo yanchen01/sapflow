@@ -79,7 +79,7 @@ app.post('/sensor', (req, res) => {
 		downlink_url: req.body.downlink_url
 	};
 
-	Tree.create(newTree, (err, result) => {
+	Sensor.create(sensorData, (err, result) => {
 		if (err) {
 			console.log(err);
 		} else {
