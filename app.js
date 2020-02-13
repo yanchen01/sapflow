@@ -10,7 +10,7 @@ const app = express();
 // 			MONGOOSE CONFIGURATION
 // ------------------------------------------ //
 require('dotenv').config();
-const Mongo_URI = process.env.ATLAS_URI;
+const Mongo_URI = process.env.ATLAS_URI.toString();
 // const Mongo_URI = 'mongodb://localhost/sapflow';
 mongoose
 	.connect(Mongo_URI, {
