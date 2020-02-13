@@ -61,7 +61,6 @@ app.get('/tree/:id', (req, res) => {
 
 // POST - collect data from sensor
 app.post('/sensor', (req, res) => {
-	console.log(req.body);
 	const sensorData = {
 		app_id: req.body.app_id,
 		dev_id: req.body.dev_id,
@@ -79,14 +78,30 @@ app.post('/sensor', (req, res) => {
 		downlink_url: req.body.downlink_url
 	};
 
-	Sensor.create(sensorData, (err, result) => {
-		if (err) {
-			console.log(err);
-		} else {
-			console.log(result);
-			res.send('Success 200');
-		}
+	Sensor.findOneAndUpdate({ dev_id: sensorData.dev_id }, sensorData).then((doc) => {}).catch((err) => {
+		console.log(err);
 	});
+
+	Sensor.findOne({ dev_id: sensorData.dev_id })
+		.then((sensor) => {
+			console.log(sensor);
+			if (sensor === null) {
+				Sensor.create(sensorData, (err, result) => {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log('Creating new sensor: ');
+						console.log(result);
+						res.send('Created');
+					}
+				});
+			} else {
+				res.send('Updated');
+			}
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 });
 
 // seedDB(); // seed the database
