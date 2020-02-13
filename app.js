@@ -52,7 +52,20 @@ app.get('/', (req, res) => {
 app.get('/tree/:id', (req, res) => {
 	Tree.findById(req.params.id)
 		.then((tree) => {
-			res.render('show', { tree });
+			res.render('./trees/show', { tree });
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+});
+
+// SHOW - information about a sensor
+app.get('/sensor/:dev_id', (req, res) => {
+	Sensor.find({ dev_id: req.params.dev_id })
+		.then((sensorDoc) => {
+			console.log(sensorDoc);
+			// res.render('/sensors/show', { sensor: sensorDoc });
+			res.send(sensorDoc);
 		})
 		.catch((err) => {
 			console.log(err);
