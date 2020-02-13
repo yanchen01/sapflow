@@ -84,10 +84,9 @@ app.post('/sensor', (req, res) => {
 			console.log(err);
 		} else {
 			console.log(result);
+			res.send('Success 200');
 		}
 	});
-
-	res.send(req.body);
 });
 
 // seedDB(); // seed the database
