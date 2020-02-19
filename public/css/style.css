@@ -58,7 +58,7 @@ h4,
 	margin: 0;
 }
 .primary-text {
-	color: #CC0000;
+	color: #cc0000;
 }
 .primary-text2 {
 	color: #ea0763;
@@ -215,7 +215,7 @@ h4,
 }
 .header_area .navbar .nav .nav-item:hover .nav-link,
 .header_area .navbar .nav .nav-item.active .nav-link {
-	color: #CC0000;
+	color: #cc0000;
 	opacity: 1;
 }
 .header_area .navbar .nav .nav-item.submenu {
@@ -2593,4 +2593,76 @@ h4,
 .footer-text a,
 .footer-text i {
 	color: #ea0763;
+}
+
+/* D3 Graphs */
+div#layout {
+	text-align: center;
+}
+
+div#container {
+	width: 1000px;
+	height: 600px;
+	margin: auto;
+	background-color: #2f4a6d;
+}
+
+svg {
+	width: 100%;
+	height: 100%;
+}
+
+.bar {
+	fill: #80cbc4;
+}
+
+text {
+	font-size: 12px;
+	fill: #fff;
+}
+
+path {
+	stroke: gray;
+}
+
+line {
+	stroke: gray;
+}
+
+line#limit {
+	stroke: #fed966;
+	stroke-width: 3;
+	stroke-dasharray: 3 6;
+}
+
+.grid path {
+	stroke-width: 0;
+}
+
+.grid .tick line {
+	stroke: #9faaae;
+	stroke-opacity: 0.3;
+}
+
+text.divergence {
+	font-size: 14px;
+	fill: #2f4a6d;
+}
+
+text.value {
+	font-size: 14px;
+}
+
+text.title {
+	font-size: 22px;
+	font-weight: 600;
+}
+
+text.label {
+	font-size: 14px;
+	font-weight: 400;
+}
+
+text.source {
+	font-size: 10px;
 }
