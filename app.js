@@ -111,8 +111,8 @@ app.post('/sensor', (req, res) => {
 							if (err) {
 								console.log(err);
 							} else {
-								sensor.data.push(data);
-								sensor.save();
+								newSensor.data.push(data);
+								newSensor.save();
 								res.send('Created new Sensor with Data pushed');
 							}
 						});
