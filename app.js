@@ -96,11 +96,6 @@ app.post('/sensor', (req, res) => {
 		time: req.body.metadata.time
 	};
 
-	// find the sensor and update if found, otherwise do nothing
-	Sensor.findOneAndUpdate({ dev_id: sensorData.dev_id }, sensorData).then((doc) => {}).catch((err) => {
-		console.log(err);
-	});
-
 	Sensor.findOne({ dev_id: sensorData.dev_id })
 		.then((sensor) => {
 			console.log(sensor);
