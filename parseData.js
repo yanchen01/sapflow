@@ -13,8 +13,10 @@ function SNR_Day() {
 			$gte: parseTime,
 			$lte: currentTime
 		}
+	}).then((data) => {
+		console.log(data);
 	});
-	console.log(query);
+
 
 	return query;
 }

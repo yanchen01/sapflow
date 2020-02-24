@@ -32,6 +32,7 @@ mongoose
 // ------------------------------------------ //
 const Tree = require('./models/tree');
 const Sensor = require('./models/sensor');
+const Data = require('./models/data');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -79,6 +80,10 @@ app.post('/sensor', (req, res) => {
 		app_id: req.body.app_id,
 		dev_id: req.body.dev_id,
 		hardware_serial: req.body.hardware_serial,
+		downlink_url: req.body.downlink_url
+	};
+
+	const newData = {
 		batt: req.body.payload_fields.batt,
 		snr1: req.body.payload_fields.snr1,
 		snr2: req.body.payload_fields.snr2,
@@ -88,35 +93,52 @@ app.post('/sensor', (req, res) => {
 		teq2: req.body.payload_fields.teq2,
 		teq3: req.body.payload_fields.teq3,
 		teq4: req.body.payload_fields.teq4,
-		time: req.body.metadata.time,
-		downlink_url: req.body.downlink_url
+		time: req.body.metadata.time
 	};
 
-	/* 	Sensor.findOneAndUpdate({ dev_id: sensorData.dev_id }, sensorData).then((doc) => {}).catch((err) => {
+	// find the sensor and update if found, otherwise do nothing
+	Sensor.findOneAndUpdate({ dev_id: sensorData.dev_id }, sensorData).then((doc) => {}).catch((err) => {
 		console.log(err);
 	});
 
 	Sensor.findOne({ dev_id: sensorData.dev_id })
 		.then((sensor) => {
 			console.log(sensor);
+			// if a new sensor -> create a new doc
 			if (sensor === null) {
-				Sensor.create(sensorData, (err, result) => {
+				Sensor.create(sensorData, (err, newSensor) => {
 					if (err) {
 						console.log(err);
 					} else {
 						console.log('Creating new sensor: ');
-						console.log(result);
-						res.send('Created');
+						console.log(newSensor);
+						Data.create(newData, (err, data) => {
+							if (err) {
+								console.log(err);
+							} else {
+								sensor.data.push(data);
+								res.send('Created new Sensor with Data pushed');
+							}
+						});
 					}
 				});
 			} else {
-				res.send('Updated');
+				// if sensor found, just push the new data
+				Data.create(newData, (err, data) => {
+					if (err) {
+						console.log(err);
+					} else {
+						sensor.data.push(data);
+						res.send('Updated');
+					}
+				});
 			}
 		})
 		.catch((err) => {
 			console.log(err);
-		}); */
-	Sensor.create(sensorData, (err, result) => {
+		});
+
+	/* 	Sensor.create(sensorData, (err, result) => {
 		if (err) {
 			console.log(err);
 		} else {
@@ -124,7 +146,7 @@ app.post('/sensor', (req, res) => {
 			console.log(result);
 			res.send('Created');
 		}
-	});
+	}); */
 });
 
 // seedDB(); // seed the database
