@@ -2,6 +2,7 @@ const express = require('express'),
 	bodyParser = require('body-parser'),
 	mongoose = require('mongoose'),
 	seedDB = require('./seeds'),
+	parseDate = require('./parseData'),
 	axios = require('axios');
 
 const app = express();
@@ -127,6 +128,7 @@ app.post('/sensor', (req, res) => {
 });
 
 // seedDB(); // seed the database
+parseDate();
 app.listen(process.env.PORT || 3000, () => {
 	console.log('Hutyra Lab Server has started on port 3000');
 });
