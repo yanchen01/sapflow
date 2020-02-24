@@ -112,6 +112,7 @@ app.post('/sensor', (req, res) => {
 								console.log(err);
 							} else {
 								sensor.data.push(data);
+								sensor.save();
 								res.send('Created new Sensor with Data pushed');
 							}
 						});
@@ -124,6 +125,7 @@ app.post('/sensor', (req, res) => {
 						console.log(err);
 					} else {
 						sensor.data.push(data);
+						sensor.save();
 						res.send('Updated');
 					}
 				});
