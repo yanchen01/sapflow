@@ -65,8 +65,8 @@ app.get('/sensor/:dev_id', (req, res) => {
 	Sensor.find({ dev_id: req.params.dev_id })
 		.then((sensorDoc) => {
 			console.log(sensorDoc);
-			res.render('./sensors/show');
-			// res.send(sensorDoc);
+			// res.render('./sensors/show');
+			res.send(sensorDoc);
 		})
 		.catch((err) => {
 			console.log(err);
