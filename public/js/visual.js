@@ -63,7 +63,7 @@ const createCharts = async function() {
 				yAxes: [
 					{
 						ticks: {
-							beginAtZero: true
+							beginAtZero: false
 						}
 					}
 				]
@@ -111,7 +111,7 @@ const createCharts = async function() {
 				yAxes: [
 					{
 						ticks: {
-							beginAtZero: true
+							beginAtZero: false
 						}
 					}
 				]
@@ -159,7 +159,7 @@ const createCharts = async function() {
 				yAxes: [
 					{
 						ticks: {
-							beginAtZero: true
+							beginAtZero: false
 						}
 					}
 				]
