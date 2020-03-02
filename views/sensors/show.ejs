@@ -8,16 +8,21 @@
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-
 </head>
 
 <body>
-    <div width="500px" height="500px">
-        <canvas id="lineChart"></canvas>
+    <h1 id="dev-id"> <%- sensor.dev_id %> </h1>
+    <div id="charts" style="width: 90%;">
+        <canvas id="battChart"></canvas>
+        <canvas id="snrChart"></canvas>
+        <canvas id="teqChart"></canvas>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
     <script src="/js/visual.js"></script>
+
 
 </body>
 
