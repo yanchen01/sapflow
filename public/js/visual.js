@@ -3,8 +3,22 @@ const snrChart = $('#snrChart');
 const teqChart = $('#teqChart');
 const dev_id = document.getElementById('dev-id').textContent.trim();
 
-const parseData = function(sensor) {
-	fetch('/sensor').then((res) => res.json()).then((data) => {
+const sensor = {
+	batt: [],
+	snr1: [],
+	snr2: [],
+	snr3: [],
+	snr4: [],
+	teq1: [],
+	teq2: [],
+	teq3: [],
+	teq4: [],
+	date: []
+};
+
+// parse all the DB data to datasets for graphing
+async function parseData(sensor) {
+	await fetch('/sensor').then((res) => res.json()).then((data) => {
 		const sensors = data.data;
 		console.log(dev_id);
 		console.log(sensors);
@@ -23,27 +37,16 @@ const parseData = function(sensor) {
 				sensor.date.push(sensorObj.date);
 			}
 		});
-
-		console.log(sensor);
 	});
-};
+}
 
-const createCharts = async function() {
-	const sensor = {
-		batt: [],
-		snr1: [],
-		snr2: [],
-		snr3: [],
-		snr4: [],
-		teq1: [],
-		teq2: [],
-		teq3: [],
-		teq4: [],
-		date: []
-	};
+const charts = createChart();
 
+async function createChart() {
+	// wait for all data to be parsed then create charts
 	await parseData(sensor);
 
+	// create charts
 	const batt_Chart = new Chart(battChart, {
 		type: 'line',
 		data: {
@@ -166,10 +169,71 @@ const createCharts = async function() {
 			}
 		}
 	});
-};
 
-$('#charts').ready(function() {
-	createCharts();
+	return { batt_Chart: batt_Chart, snr_Chart: snr_Chart, teq_Chart: teq_Chart };
+}
 
-	console.log('ready!');
-});
+async function updateChart() {
+	const sensor = {
+		batt: [],
+		snr1: [],
+		snr2: [],
+		snr3: [],
+		snr4: [],
+		teq1: [],
+		teq2: [],
+		teq3: [],
+		teq4: [],
+		date: []
+	};
+	await parseData(sensor);
+
+	console.log('logging sensors');
+	console.log(sensor);
+	console.log('logging charts');
+	charts
+		.then((chartsObj) => {
+			chartsObj.batt_Chart.data.labels = sensor.date;
+			chartsObj.batt_Chart.data.datasets[0].data = sensor.batt;
+			chartsObj.batt_Chart.update();
+
+			chartsObj.snr_Chart.data.labels = sensor.date;
+			chartsObj.snr_Chart.data.datasets.forEach((dataset, i) => {
+				switch (i) {
+					case 0:
+						dataset.data = sensor.snr1;
+						break;
+					case 1:
+						dataset.data = sensor.snr2;
+						break;
+					case 2:
+						dataset.data = sensor.snr3;
+						break;
+					default:
+						dataset.data = sensor.snr4;
+				}
+			});
+			chartsObj.snr_Chart.update();
+
+			chartsObj.teq_Chart.data.labels = sensor.date;
+			chartsObj.teq_Chart.data.datasets.forEach((dataset, i) => {
+				switch (i) {
+					case 0:
+						dataset.data = sensor.teq1;
+						break;
+					case 1:
+						dataset.data = sensor.teq2;
+						break;
+					case 2:
+						dataset.data = sensor.teq3;
+						break;
+					default:
+						dataset.data = sensor.teq4;
+				}
+			});
+			chartsObj.teq_Chart.update();
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+}
