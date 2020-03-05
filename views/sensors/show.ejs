@@ -14,29 +14,36 @@
 
 <body>
     <h1 id="dev-id"> <%- sensor.dev_id %> </h1>
-    <div id="charts" class="py-5">
-        <div class="col-md-6 offset-md-3">
-            <p><button class="btn btn-success" onclick="updateChart()"> Update </button></p>
-            <div class="card mb-50px">
-                <div class="card-body">
-                    <h3> Battery Chart </h3>
-                    <canvas id="battChart"></canvas>
-                </div>
-            </div>
-            <div class="card mb-50px">
-                <div class="card-body">
-                    <h3> SNR Chart </h3>
+    <div id="charts" class="py-5 px-2">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
 
-                    <canvas id="snrChart"></canvas>
+                <p><button class="btn btn-success" onclick="updateChart()"> Update </button>
+                    <button class="btn btn-success" onclick="dayChart()"> See Daily Data </button>
+                    <button class="btn btn-success" onclick="weekChart()"> See Weekly Data </button>
+                </p>
+                <div class="card mb-50px">
+                    <div class="card-body">
+                        <h3> Battery Chart </h3>
+                        <canvas id="battChart"></canvas>
+                    </div>
                 </div>
-            </div>
-            <div class="card mb-50px">
-                <div class="card-body">
-                    <h3> TEQ Chart </h3>
-                    <canvas id="teqChart"></canvas>
+                <div class="card mb-50px">
+                    <div class="card-body">
+                        <h3> SNR Chart </h3>
+
+                        <canvas id="snrChart"></canvas>
+                    </div>
+                </div>
+                <div class="card mb-50px">
+                    <div class="card-body">
+                        <h3> TEQ Chart </h3>
+                        <canvas id="teqChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
     </div>
 
@@ -49,6 +56,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="/js/visual.js"></script>
 
 
