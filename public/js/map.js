@@ -2,9 +2,9 @@ let mapKey = '';
 
 async function getKey() {
     await fetch('/map/token').then((res) => res.json()).then((data) => {
-        console.log('Getting key');
-		mapKey = data;
-    })
+        console.log(data);
+		mapKey = data.key;
+    });
 }
 
 /* async function getLatlng() {

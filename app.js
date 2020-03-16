@@ -236,7 +236,7 @@ app.get('/map', (req, res) => {
 });
 
 app.get('/map/token', (req, res) => {
-	res.json(mapKey);
+	res.json({ success: true, key: mapKey });
 });
 
 // seedDB(); // seed the database
