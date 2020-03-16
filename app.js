@@ -225,10 +225,10 @@ app.get('/sensor/:dev_id', (req, res) => {
 });
 
 app.get('/map', (req, res) => {
-	Sensor.find()
+	Sensor.find({})
 		.then((result) => {
 			console.log(result);
-			res.json(res);
+			res.json({ success: true, data: result });
 		})
 		.catch((err) => {
 			console.log(err);

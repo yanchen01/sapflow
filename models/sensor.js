@@ -4,7 +4,7 @@ const SensorSchema = mongoose.Schema({
 	app_id: String,
 	dev_id: String,
 	hardware_serial: String,
-/* 	data: [
+	/* 	data: [
 		{
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Data'
@@ -20,6 +20,8 @@ const SensorSchema = mongoose.Schema({
 	teq3: Number,
 	teq4: Number,
 	time: String,
+	lat: Number,
+	long: Number,
 	date: { type: Date, default: Date.now },
 	downlink_url: String
 });

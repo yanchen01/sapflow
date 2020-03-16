@@ -1,19 +1,24 @@
 let mapKey = '';
 
 async function getKey() {
-    await fetch('/map/token').then((res) => res.json()).then((data) => {
-        console.log(data);
+	await fetch('/map/token').then((res) => res.json()).then((data) => {
 		mapKey = data.key;
-    });
+	});
 }
 
-/* async function getLatlng() {
+async function getLatlng() {
 	let lat = [];
 	let long = [];
-    let plot = { lat: lat, long: long };
-    
-    await fetch('/')
-} */
+	let plot = { lat: lat, long: long };
+
+	await fetch('/map').then((res) => res.json()).then((data) => {
+		console.log(data);
+	});
+}
+
+fetch('/map').then((res) => res.json()).then((data) => {
+    console.log(data);
+});
 
 async function loadMap() {
 	const map = L.map('mapid').setView([ 42.350478, -71.105222 ], 15);
