@@ -1,10 +1,10 @@
 let mapKey = '';
 
 async function getKey() {
-	await fetch('/map/token').then((res) => res.json()).then((data) => {
+    await fetch('/map/token').then((res) => res.json()).then((data) => {
         console.log('Getting key');
 		mapKey = data;
-	});
+    })
 }
 
 /* async function getLatlng() {
