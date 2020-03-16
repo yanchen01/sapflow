@@ -16,8 +16,15 @@ async function getKey() {
 
 async function loadMap() {
 	const map = L.map('mapid').setView([ 42.350478, -71.105222 ], 15);
+	let mapKey = '';
 
-	const mapKey = await getKey();
+	await getKey()
+		.then((result) => {
+			mapKey = result;
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 
 	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 		attribution:
