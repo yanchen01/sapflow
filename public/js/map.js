@@ -6,11 +6,13 @@ async function getKey() {
 	return key;
 }
 
-async function getLatlng() {
+/* async function getLatlng() {
 	let lat = [];
 	let long = [];
-	let plot = { lat: lat, long: long };
-}
+    let plot = { lat: lat, long: long };
+    
+    await fetch('/')
+} */
 
 async function loadMap() {
 	const map = L.map('mapid').setView([ 42.350478, -71.105222 ], 15);
