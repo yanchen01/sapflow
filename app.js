@@ -11,6 +11,8 @@ const app = express();
 // ------------------------------------------ //
 require('dotenv').config();
 const Mongo_URI = process.env.ATLAS_URI;
+const mapKey = process.env.mapKey;
+
 // const Mongo_URI = 'mongodb://localhost/sapflow';
 mongoose
 	.connect(Mongo_URI, {
@@ -220,6 +222,21 @@ app.get('/sensor/:dev_id', (req, res) => {
 		.catch((err) => {
 			console.log(err);
 		}); */
+});
+
+app.get('/map', (req, res) => {
+	Sensor.find()
+		.then((result) => {
+			console.log(result);
+			res.json(result);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+});
+
+app.get('/map/token', (req, res) => {
+	res.json(mapKey);
 });
 
 // seedDB(); // seed the database
