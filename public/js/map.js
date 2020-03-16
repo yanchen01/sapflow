@@ -1,10 +1,9 @@
-async function getKey() {
-	let key = '';
-	await fetch('/map/token').then((res) => res.json()).then((data) => {
-		key = data;
-	});
+let mapKey = '';
 
-	return key;
+async function getKey() {
+	await fetch('/map/token').then((res) => res.json()).then((data) => {
+		mapKey = data;
+	});
 }
 
 /* async function getLatlng() {
@@ -17,15 +16,8 @@ async function getKey() {
 
 async function loadMap() {
 	const map = L.map('mapid').setView([ 42.350478, -71.105222 ], 15);
-	let mapKey = '';
 
-	await getKey()
-		.then((result) => {
-			mapKey = result;
-		})
-		.catch((err) => {
-			console.log(err);
-		});
+	await getKey();
 
 	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 		attribution:
