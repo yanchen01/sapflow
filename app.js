@@ -228,7 +228,7 @@ app.get('/map', (req, res) => {
 	Sensor.find()
 		.then((result) => {
 			console.log(result);
-			res.json(result);
+			res.json(res);
 		})
 		.catch((err) => {
 			console.log(err);

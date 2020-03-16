@@ -3,6 +3,7 @@ async function getKey() {
 	await fetch('/map/token').then((res) => res.json()).then((data) => {
 		key = data;
 	});
+
 	return key;
 }
 
