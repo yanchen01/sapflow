@@ -1,26 +1,47 @@
-<html lang="en">
+<%- include('../partials/header') %>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Sensor Info</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
-    <h1 id="dev-id"> <%- sensor.dev_id %> </h1>
-    <div id="charts" class="py-5 px-2">
-        <div class="row">
+
+<div class="site-content">
+    <header class="site-header" data-bg-image="">
+        <div class="container">
+            <div class="header-bar">
+                <a href="/" class="branding">
+                    <img src="images/logo.png" alt="" class="logo">
+                    <div class="logo-type">
+                        <h1 class="site-title">Hutyra Research Lab</h1>
+                        <small class="site-description">Tagline goes here</small>
+                    </div>
+                </a>
+
+                <nav class="main-navigation">
+                    <button class="menu-toggle"><i class="fa fa-bars"></i></button>
+                    <ul class="menu">
+                        <li class="home menu-item"><a href="/"><img src="./images/home-icon.png" alt="Home"></a>
+                        </li>
+                        <li class="menu-item current-menu-item"><a href="#">About</a></li>
+                        <li class="menu-item"><a href="#">Services</a></li>
+                        <li class="menu-item"><a href="/sensor">Sensor Data</a></li>
+                        <li class="menu-item"><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="mobile-navigation"></div>
+            </div>
+        </div>
+    </header>
+
+    <div id="charts" class="py-3 px-2">
+        <h2 id="dev-id" style="text-align: center;"> <%- sensor.dev_id %> </h1>
+
+        <div class="row pt-1">
             <div class="col-md-8 offset-md-2">
 
                 <p><button class="btn btn-success" onclick="updateChart()"> Update </button>
-                    <button class="btn btn-success" onclick="dayChart()"> See Daily Data </button>
-                    <button class="btn btn-success" onclick="weekChart()"> See Weekly Data </button>
+                    <button class="btn btn-primary" onclick="dayChart()"> See Daily Data </button>
+                    <button class="btn btn-info" onclick="weekChart()"> See Weekly Data </button>
                 </p>
                 <div class="card mb-50px">
                     <div class="card-body">
@@ -43,21 +64,77 @@
                 </div>
             </div>
         </div>
-
     </div>
-    </div>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="widget">
+                        <h3 class="widget-title">Our address</h3>
+                        <strong>Hutyra Research Lab</strong>
+                        <address>685 Commonwealth Ave. Boston, MA 02215</address>
+                        <a href="tel:+1 617-353-5743">+1 617-353-5743</a> <br>
+                        <a href="mailto:office@companyname.com">office@companyname.com</a>
+                    </div>
+                </div>
+<!--                 <div class="col-md-3">
+                    <div class="widget">
+                        <h3 class="widget-title">Press room</h3>
+                        <ul class="arrow-list">
+                            <li><a href="#">Accusantium doloremque</a></li>
+                            <li><a href="#">Laudantium totam aperiam</a></li>
+                            <li><a href="#">Eaque ipsa quae illo inventore</a></li>
+                            <li><a href="#">Veritatis et quasi architecto</a></li>
+                            <li><a href="#">Vitae dicta sunt explicabo</a></li>
+                        </ul>
+                    </div>
+                </div> -->
+                <div class="col-md-4">
+                    <div class="widget">
+                        <h3 class="widget-title">Research summary</h3>
+                        <ul class="arrow-list">
+                            <li><a href="#">Accusantium doloremque</a></li>
+                            <li><a href="#">Laudantium totam aperiam</a></li>
+                            <li><a href="#">Eaque ipsa quae illo inventore</a></li>
+                            <li><a href="#">Veritatis et quasi architecto</a></li>
+                            <li><a href="#">Vitae dicta sunt explicabo</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="widget">
+                        <h3 class="widget-title">Social media</h3>
+                        <p>Deserunt mollitia animi id est laborum dolorum fuga harum quidem rerum facilis.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- .row -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="/js/visual.js"></script>
+        </div> <!-- .container -->
+    </footer>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/plugins.js"></script>
+<script src="/js/app.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="/js/visual.js"></script>
 
 
 </body>

@@ -1,91 +1,202 @@
-<%- include('./partials/header') %> 
+<%- include('./partials/header') %>
 
-    <!--================Hero Banner Area Start =================-->
-    <section class="hero-banner">
-        <div class="container text-center">
-            <p>Carbon Cycle Science | Urbanization | Global Change | Ecosystem Ecology</p>
-            <h1>The Hutyra Research Lab investigates carbon dynamics in forest systems and urban areas.</h1>
-            <a class="button button-header" href="#">See Details</a>
-        </div>
-    </section>
-    <!--================Hero Banner Area End =================-->
+</head>
 
+<body>
 
-    <!--================ Innovation section Start =================-->
-    <section class="section-padding--small bg-gray">
+<div class="site-content">
+    <header class="site-header collapsed-nav" data-bg-image="">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6 align-self-center mb-5 mb-lg-0">
-                    <div class="innovative-wrapper">
-                        <h3 class="primary-text">Innovative With Experience <br class="d-none d-xl-block"> UX Design
-                            2019</h3>
-                        <p class="h4 primary-text2 mb-3">Where The business World Meets</p>
-                        <p>Morning steas great earth for divide our good sixth called abunda itseld appear fisrd seaton
-                            upon above may bearing all moveth morning make subdue stars they are a goreat eart divide
-                            our good sixth one of that</p>
+            <div class="header-bar">
+                <a href="/" class="branding">
+                    <img src="./images/logo.png" alt="" class="logo">
+                    <div class="logo-type">
+                        <h1 class="site-title">Hutyra Research Lab</h1>
+                        <small class="site-description">Tagline goes here</small>
                     </div>
-                </div>
-                <div class="col-lg-6 pl-xl-5">
+                </a>
 
-                    <ul class="clockdiv text-center" id="clockdiv">
-                        <li class="clockdiv-single clockdiv-day">
-                            <h1 class="days">320</h1>
-                            <span class="smalltext">Days</span>
-                        </li>
-                        <li class="clockdiv-single clockdiv-hour">
-                            <h1 class="hours">30</h1>
-                            <span class="smalltext">Hours</span>
-                        </li>
-                        <li class="clockdiv-single clockdiv-minute">
-                            <h1 class="minutes">30</h1>
-                            <span class="smalltext">Mins</span>
-                        </li>
+                <nav class="main-navigation">
+                    <button class="menu-toggle"><i class="fa fa-bars"></i></button>
+                    <ul class="menu">
+                        <li class="home menu-item current-menu-item"><a href="/"><img src="./images/home-icon.png"
+                                    alt="Home"></a></li>
+                        <li class="menu-item"><a href="#">About</a></li>
+                        <li class="menu-item"><a href="#">Services</a></li>
+                        <li class="menu-item"><a href="/sensor">Sensor Data</a></li>
+                        <li class="menu-item"><a href="#">Contact</a></li>
                     </ul>
+                </nav>
 
-                    <div class="clockdiv-content text-center">
-                        <p class="h4 primary-text2 mb-2">January 20 -22, 2019 in Buffelo City</p>
-                        <a class="button button-link" href="#">Get Ticket</a>
-                    </div>
-                </div>
+                <div class="mobile-navigation"></div>
             </div>
         </div>
-    </section>
-    <!--================ Innovation section End =================-->
+    </header>
 
+    <div class="hero">
+        <ul class="slides">
+            <li data-bg-image="./images/banner-1.jpg">
+                <div class="container">
+                    <div class="slide-content">
+                        <h2 class="slide-title">Hutyra Research Lab</h2>
+                        <p>Carbon Cycle Science | Urbanization | Global Change | Ecosystem Ecology</p>
+                        <a href="#" class="button">See details</a>
+                    </div>
+                </div>
+            </li>
+            <li data-bg-image="images/banner-2.jpg">
+                <div class="container">
+                    <div class="slide-content">
+                        <h2 class="slide-title">Hutyra Research Lab</h2>
+                        <p>Carbon Cycle Science | Urbanization | Global Change | Ecosystem Ecology</p>
+                        <a href="#" class="button">See details</a>
+                    </div>
+                </div>
+            </li>
+            <li data-bg-image="./images/banner-3.jpg">
+                <div class="container">
+                    <div class="slide-content">
+                        <h2 class="slide-title">Hutyra Research Lab</h2>
+                        <p>Carbon Cycle Science | Urbanization | Global Change | Ecosystem Ecology</p>
+                        <a href="#" class="button">See details</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
 
-    <!--================ Data Info section Start =================-->
-    <section class="section-margin">
-        <div class="container">
-            <div class="section-intro text-center pb-98px">
-                <p class="section-intro__title">Information</p>
-                <h2 class="primary-text">Check Out the Trees</h2>
-                <img src="img/home/section-style.png" alt="">
-            </div>
-            <div class="row">
-                <% trees.forEach(tree => { %>
-                <!--           <div class="d-lg-flex justify-content-between"> -->
-                <div class="col-lg-4">
-                    <div class="card-feature text-center mb-5 mb-lg-0">
-                        <img src="img/trees/card-tree.jfif" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h3 class="card-title">Tree <%= tree.name %> </h3>
-                            <a class="btn btn-outline-info" href="tree/<%= tree._id %>">Details</a>
+    <main class="main-content">
+        <div class="fullwidth-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="feature">
+                            <img src="./images/icon-research-small.png" alt="" class="feature-image">
+                            <h2 class="feature-title">Carbon Cycle Science</h2>
+                            <p>Laborum et dolorum fuga harum quidem rerum facilis et expedita distinctio nam libero
+                                tempore.</p>
+                            <a href="" class="button">Learn more</a>
                         </div>
                     </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="feature">
+                            <img src="./images/icon-medicine-small.png" alt="" class="feature-image">
+                            <h2 class="feature-title">Urbanization</h2>
+                            <p>Laborum et dolorum fuga harum quidem rerum facilis et expedita distinctio nam libero
+                                tempore.</p>
+                            <a href="" class="button">Learn more</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="feature">
+                            <img src="./images/icon-genetics-small.png" alt="" class="feature-image">
+                            <h2 class="feature-title">Global Change</h2>
+                            <p>Laborum et dolorum fuga harum quidem rerum facilis et expedita distinctio nam libero
+                                tempore.</p>
+                            <a href="" class="button">Learn more</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="feature">
+                            <img src="./images/icon-energy-small.png" alt="" class="feature-image">
+                            <h2 class="feature-title">Ecosystem Ecology</h2>
+                            <p>Laborum et dolorum fuga harum quidem rerum facilis et expedita distinctio nam libero
+                                tempore.</p>
+                            <a href="" class="button">Learn more</a>
+                        </div>
+                    </div>
+                </div> <!-- .row -->
+            </div> <!-- .container -->
+        </div> <!-- .fullwidth-block -->
+
+        <div class="fullwidth-block" data-bg-color="#edf2f4">
+            <div class="container">
+                <h2 class="section-title">Latest News</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="post">
+                            <figure class="featured-image"><img src="./images/news-1.jpg" alt=""></figure>
+                            <h2 class="entry-title"><a href="">Magni dolores rationale</a></h2>
+                            <small class="date">2 oct 2014</small>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                laudantium...</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="post">
+                            <figure class="featured-image"><img src="./images/news-2.jpg" alt=""></figure>
+                            <h2 class="entry-title"><a href="">Perspiciatis unde omnus</a></h2>
+                            <small class="date">2 oct 2014</small>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                laudantium...</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="post">
+                            <figure class="featured-image"><img src="./images/news-3.jpg" alt=""></figure>
+                            <h2 class="entry-title"><a href="">Voluptatem laundantium totam</a></h2>
+                            <small class="date">2 oct 2014</small>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                laudantium...</p>
+                        </div>
+                    </div>
+                </div> <!-- .row -->
+            </div> <!-- .container -->
+        </div> <!-- .fullwidth-block -->
+
+        <div class="fullwidth-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2 class="section-title">Our mission and vision</h2>
+                        <p>Consequuntur minima, delectus quia labore sapiente maiores illo enim numquam sint?
+                            Molestias odio itaque, recusandae ut quae fuga ea tempore facere facilis. Lorem ipsum
+                            dolor sit amet, consectetur adipisicing elit. Eligendi cupiditate repellat velit quo,
+                            fugiat dolores eum corrupti commodi? Deserunt, adipisci sunt voluptas aliquid aliquam
+                            eos. Perspiciatis, similique atque deserunt nam.</p>
+                        <p>Distinctio delectus consequuntur sed quod ipsum a, odio obcaecati neque, aliquam nostrum
+                            aliquid reprehenderit ad quae qui autem voluptate omnis quas Lorem ipsum dolor sit amet,
+                            consectetur adipisicing elit. Maxime magnam amet obcaecati dolore omnis consectetur
+                            dignissimos iste cupiditate excepturi quae porro fugiat, nemo iure, minima. Fuga hic
+                            voluptate ratione, at.ullam.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h2 class="section-title">Research summaries</h2>
+                        <ul class="arrow-list has-border">
+                            <li><a href="#">Praesentium voluptatum deleniti atque dolores</a></li>
+                            <li><a href="#">Corrupti quos et quas molestias excepturi sint</a></li>
+                            <li><a href="#">Occaecati cupiditate non provident similique sunt</a></li>
+                            <li><a href="#">Nam libero tempore, cum soluta nobis est eligendi</a></li>
+                        </ul>
+                        <a href="#" class="button">Show more</a>
+                    </div>
                 </div>
-                <% }) %>
-            </div>
-
-        </div>
-        <div class="row mt-5">
-            <div class="col-12 text-center">
-                <a class="button mr-3 mb-2" href="#">Learn More</a>
-                <a class="button mb-2" href="#">Buy Ticket</a>
             </div>
         </div>
+
+        <div class="fullwidth-block cta" data-bg-image="./images/cta-bg.jpg">
+            <div class="container">
+                <h2 class="cta-title">Neque porro quisquam</h2>
+                <p>Modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem enim ad minima veniam
+                    quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
+                    consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil
+                    moles</p>
+                <a href="#" class="button">See details</a>
+            </div>
         </div>
-    </section>
-    <!--================ Join section End =================-->
 
-<%- include('./partials/footer') %> 
+        <div class="fullwidth-block" data-bg-color="#edf2f4">
+            <div class="container">
+                <div class="subscribe-form">
+                    <h2>Join our newsletter</h2>
+                    <form action="#">
+                        <input type="text" placeholder="Enter your email">
+                        <input type="submit" value="Subscribe">
+                    </form>
+                </div>
+            </div>
+        </div>
 
+    </main> <!-- .main-content -->
+
+    <%- include('./partials/footer') %>

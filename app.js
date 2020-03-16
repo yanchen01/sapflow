@@ -109,6 +109,43 @@ app.get('/chart/week', (req, res) => {
 		});
 });
 
+// GET - see all sensor data
+app.get('/sensor', (req, res) => {
+	res.render('./sensors/index');
+});
+
+// POST - collect data from sensor
+app.post('/sensor', (req, res) => {
+	// sensor model
+	const sensorData = {
+		app_id: req.body.app_id,
+		dev_id: req.body.dev_id,
+		hardware_serial: req.body.hardware_serial,
+		downlink_url: req.body.downlink_url,
+		batt: req.body.payload_fields.batt,
+		snr1: req.body.payload_fields.snr1,
+		snr2: req.body.payload_fields.snr2,
+		snr3: req.body.payload_fields.snr3,
+		snr4: req.body.payload_fields.snr4,
+		teq1: req.body.payload_fields.teq1,
+		teq2: req.body.payload_fields.teq2,
+		teq3: req.body.payload_fields.teq3,
+		teq4: req.body.payload_fields.teq4,
+		lat: req.body.payload_fields.lat,
+		long: req.body.payload_fields.long,
+		time: req.body.metadata.time
+	};
+
+	new Sensor(sensorData)
+		.save()
+		.then((sensor) => {
+			return res.json('success');
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+});
+
 // SHOW - information about a sensor
 app.get('/sensor/:dev_id', (req, res) => {
 	const currentTime = new Date().toISOString();
@@ -117,7 +154,6 @@ app.get('/sensor/:dev_id', (req, res) => {
 	console.log(`Now: ${currentTime} Parse: ${parseTime}`);
 	console.log(`Now: ${currentTime.toString()} Parse: ${parseTime.toString()}`);
 
-	
 	Sensor.find({
 		dev_id: req.params.dev_id,
 		date: {
@@ -127,7 +163,7 @@ app.get('/sensor/:dev_id', (req, res) => {
 	})
 		.then((data) => {
 			console.log(data);
-			res.render('./sensors/show', {sensor:data[0]});
+			res.render('./sensors/show', { sensor: data[0] });
 		})
 		.catch((err) => {
 			console.log(err);
@@ -184,90 +220,6 @@ app.get('/sensor/:dev_id', (req, res) => {
 		.catch((err) => {
 			console.log(err);
 		}); */
-});
-
-// POST - collect data from sensor
-app.post('/sensor', (req, res) => {
-	// sensor model
-	const sensorData = {
-		app_id: req.body.app_id,
-		dev_id: req.body.dev_id,
-		hardware_serial: req.body.hardware_serial,
-		downlink_url: req.body.downlink_url,
-		batt: req.body.payload_fields.batt,
-		snr1: req.body.payload_fields.snr1,
-		snr2: req.body.payload_fields.snr2,
-		snr3: req.body.payload_fields.snr3,
-		snr4: req.body.payload_fields.snr4,
-		teq1: req.body.payload_fields.teq1,
-		teq2: req.body.payload_fields.teq2,
-		teq3: req.body.payload_fields.teq3,
-		teq4: req.body.payload_fields.teq4,
-		time: req.body.metadata.time
-	};
-
-	/* 	// info about new sensor data
-	const newData = {
-		batt: req.body.payload_fields.batt,
-		snr1: req.body.payload_fields.snr1,
-		snr2: req.body.payload_fields.snr2,
-		snr3: req.body.payload_fields.snr3,
-		snr4: req.body.payload_fields.snr4,
-		teq1: req.body.payload_fields.teq1,
-		teq2: req.body.payload_fields.teq2,
-		teq3: req.body.payload_fields.teq3,
-		teq4: req.body.payload_fields.teq4,
-		time: req.body.metadata.time
-	}; */
-
-	/* 	Sensor.findOne({ dev_id: sensorData.dev_id })
-		.then((sensor) => {
-			console.log(sensor);
-			// if a new sensor -> create a new doc
-			if (sensor === null) {
-				Sensor.create(sensorData, (err, newSensor) => {
-					if (err) {
-						console.log(err);
-					} else {
-						console.log('Creating new sensor: ');
-						console.log(newSensor);
-						// make new data doc
-						Data.create(newData, (err, data) => {
-							if (err) {
-								console.log(err);
-							} else {
-								// append to new sensor doc
-								newSensor.data.push(data);
-								newSensor.save();
-								res.send('Created new Sensor with Data pushed');
-							}
-						});
-					}
-				});
-			} else {
-				// if sensor found, just push the new data
-				Data.create(newData, (err, data) => {
-					if (err) {
-						console.log(err);
-					} else {
-						sensor.data.push(data);
-						sensor.save();
-						res.send('Updated');
-					}
-				});
-			}
-		})
-		.catch((err) => {
-			console.log(err);
-		}); */
-	new Sensor(sensorData)
-		.save()
-		.then((sensor) => {
-			return res.json('success');
-		})
-		.catch((err) => {
-			console.log(err);
-		});
 });
 
 // seedDB(); // seed the database
