@@ -1,3 +1,9 @@
+const socket = io();
+
+socket.on('update', (message) => {
+	console.log(message);
+})
+
 const battChart = $('#battChart');
 const snrChart = $('#snrChart');
 const teqChart = $('#teqChart');
@@ -25,10 +31,8 @@ async function parseData(sensor, range) {
 		await fetch('/chart').then((res) => res.json()).then((data) => {
 			const sensors = data.data;
 			console.log(dev_id);
-			console.log(sensors);
 			sensors.forEach((sensorObj) => {
 				if (sensorObj.dev_id.trim().localeCompare(dev_id) === 0) {
-					console.log('pushing');
 					sensor.batt.push(sensorObj.batt);
 					sensor.snr1.push(sensorObj.snr1);
 					sensor.snr2.push(sensorObj.snr2);
@@ -47,10 +51,8 @@ async function parseData(sensor, range) {
 		await fetch('/chart/week').then((res) => res.json()).then((data) => {
 			const sensors = data.data;
 			console.log(dev_id);
-			console.log(sensors);
 			sensors.forEach((sensorObj) => {
 				if (sensorObj.dev_id.trim().localeCompare(dev_id) === 0) {
-					console.log('pushing');
 					sensor.batt.push(sensorObj.batt);
 					sensor.snr1.push(sensorObj.snr1);
 					sensor.snr2.push(sensorObj.snr2);
@@ -328,7 +330,6 @@ async function updateChart() {
 	};
 	await parseData(sensor, range);
 
-	console.log(sensor);
 	charts
 		.then((chartsObj) => {
 			chartsObj.batt_Chart.data.labels = sensor.date;

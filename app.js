@@ -1,10 +1,15 @@
 const express = require('express'),
 	bodyParser = require('body-parser'),
 	mongoose = require('mongoose'),
-	seedDB = require('./seeds'),
 	axios = require('axios');
 
 const app = express();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+
+io.on('connection', function(socket) {
+	console.log('a user connected');
+});
 
 // ------------------------------------------ //
 // 			MONGOOSE CONFIGURATION
@@ -81,7 +86,6 @@ app.get('/chart', (req, res) => {
 		}
 	})
 		.then((data) => {
-			console.log(data);
 			res.json({ success: true, data: data });
 		})
 		.catch((err) => {
@@ -103,7 +107,6 @@ app.get('/chart/week', (req, res) => {
 		}
 	})
 		.then((data) => {
-			console.log(data);
 			res.json({ success: true, data: data });
 		})
 		.catch((err) => {
@@ -118,6 +121,7 @@ app.get('/sensor', (req, res) => {
 
 // POST - collect data from sensor
 app.post('/sensor', (req, res) => {
+
 	// sensor model
 	const sensorData = {
 		app_id: req.body.app_id,
@@ -141,6 +145,7 @@ app.post('/sensor', (req, res) => {
 	new Sensor(sensorData)
 		.save()
 		.then((sensor) => {
+			io.emit('update', 'Updating New Data');
 			return res.json('success');
 		})
 		.catch((err) => {
@@ -164,7 +169,6 @@ app.get('/sensor/:dev_id', (req, res) => {
 		}
 	})
 		.then((data) => {
-			console.log(data);
 			res.render('./sensors/show', { sensor: data[0] });
 		})
 		.catch((err) => {
@@ -239,7 +243,6 @@ app.get('/map/token', (req, res) => {
 	res.json({ success: true, key: mapKey });
 });
 
-// seedDB(); // seed the database
-app.listen(process.env.PORT || 3000, () => {
+http.listen(process.env.PORT || 3000, () => {
 	console.log('Hutyra Lab Server has started on port 3000');
 });
