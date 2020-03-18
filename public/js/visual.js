@@ -1,13 +1,10 @@
 const socket = io();
 
 socket.on('update', (state) => {
-	console.log('receiving state');
-	console.log(state);
 	if (state) {
 		console.log('Updating Chart');
 		updateChart();
 	}
-
 })
 
 const battChart = $('#battChart');
