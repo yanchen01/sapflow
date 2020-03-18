@@ -145,7 +145,8 @@ app.post('/sensor', (req, res) => {
 	new Sensor(sensorData)
 		.save()
 		.then((sensor) => {
-			io.emit('update', 'Updating New Data');
+			io.emit('update', true);
+			console.log('emit new update');
 			return res.json('success');
 		})
 		.catch((err) => {
