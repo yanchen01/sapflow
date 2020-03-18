@@ -42,7 +42,8 @@ async function loadMap() {
 
 	nodes.forEach((node) => {
         const marker = L.marker([ node.lat, node.long ]).addTo(map)
-        marker.bindPopup(`<a href="/sensor/${node.dev_id}"> See Sensor Data </a>`).openPopup();
+		marker.bindPopup(` <p> Device ID: ${node.dev_id} </p>
+		<p> <a href="/sensor/${node.dev_id}"> See Sensor Data </a> </p>`);
 		markers.push(marker);
 	});
 

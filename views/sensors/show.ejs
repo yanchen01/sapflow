@@ -34,7 +34,7 @@
     </header>
 
     <div id="charts" class="py-3 px-2">
-        <h2 id="dev-id" style="text-align: center;"> <%- sensor.dev_id %> </h1>
+        <h2 class="chart-title" id="dev-id" style="text-align: center;"> <%- sensor.dev_id %> </h1>
 
         <div class="row pt-1">
             <div class="col-md-8 offset-md-2">
@@ -43,22 +43,22 @@
                     <button class="btn btn-primary" onclick="dayChart()"> See Daily Data </button>
                     <button class="btn btn-info" onclick="weekChart()"> See Weekly Data </button>
                 </p>
-                <div class="card mb-50px">
+                <div class="card mb-5">
                     <div class="card-body">
-                        <h3> Battery Chart </h3>
+                        <h3 style="text-align: center;"> Battery Chart </h3>
                         <canvas id="battChart"></canvas>
                     </div>
                 </div>
-                <div class="card mb-50px">
+                <div class="card mb-5">
                     <div class="card-body">
-                        <h3> SNR Chart </h3>
+                        <h3 style="text-align: center;"> SNR Chart </h3>
 
                         <canvas id="snrChart"></canvas>
                     </div>
                 </div>
-                <div class="card mb-50px">
+                <div class="card mb-5">
                     <div class="card-body">
-                        <h3> TEQ Chart </h3>
+                        <h3 style="text-align: center;"> TEQ Chart </h3>
                         <canvas id="teqChart"></canvas>
                     </div>
                 </div>

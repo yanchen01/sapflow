@@ -1143,6 +1143,15 @@ figure img {
 	border-bottom: none;
 }
 
+.site-footer {
+	background-color: #f5f5f5;
+	margin-top: 50px;
+}
+
+.chart-title {
+	color: #007bff;
+}
+
 #mapid {
 	height: 500px;
 }
