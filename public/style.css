@@ -1148,10 +1148,18 @@ figure img {
 	margin-top: 50px;
 }
 
-.chart-title {
-	color: #007bff;
-}
-
 #mapid {
 	height: 500px;
+}
+
+@media screen and (max-width: 450px) {
+	.chart {
+		display: block;
+		width: 700px;
+		height: 450px;
+	}
+}
+
+.chart-title {
+	color: #007bff;
 }

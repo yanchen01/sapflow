@@ -39,27 +39,27 @@
                 <div class="row pt-1">
                     <div class="col-md-8 offset-md-2">
 
-                        <p><!-- <button class="btn btn-success" onclick="updateChart()"> Update </button> -->
+                        <p>
+                            <!-- <button class="btn btn-success" onclick="updateChart()"> Update </button> -->
                             <button class="btn btn-primary" onclick="dayChart()"> See Daily Data </button>
                             <button class="btn btn-info" onclick="weekChart()"> See Weekly Data </button>
                         </p>
                         <div class="card mb-5">
-                            <div class="card-body">
+                            <div>
                                 <h3 style="text-align: center;"> Battery Chart </h3>
-                                <canvas id="battChart"></canvas>
+                                <canvas class="chart" id="battChart" style="display: block; width: 700px; height: 450px;"></canvas>
                             </div>
                         </div>
                         <div class="card mb-5">
-                            <div class="card-body">
+                            <div>
                                 <h3 style="text-align: center;"> SNR Chart </h3>
-
-                                <canvas id="snrChart"></canvas>
+                                <canvas class="chart" id="snrChart" style="display: block; width: 700px; height: 450px;"></canvas>
                             </div>
                         </div>
                         <div class="card mb-5">
-                            <div class="card-body">
+                            <div>
                                 <h3 style="text-align: center;"> TEQ Chart </h3>
-                                <canvas id="teqChart"></canvas>
+                                <canvas class="chart" id="teqChart" style="display: block; width: 700px; height: 450px;"></canvas>
                             </div>
                         </div>
                     </div>
