@@ -1,7 +1,6 @@
 const express = require('express'),
 	bodyParser = require('body-parser'),
-	mongoose = require('mongoose'),
-	axios = require('axios');
+	mongoose = require('mongoose');
 
 const app = express();
 const http = require('http').createServer(app);
