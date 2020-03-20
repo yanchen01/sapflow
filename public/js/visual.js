@@ -87,10 +87,11 @@ async function createChart() {
 			datasets: [
 				{
 					label: 'Battery Status',
-					fill: false,
+					fill: true,
 					lineTension: 0.3,
+					pointBackgroundColor: 'rgb(2, 207, 167)',
 					backgroundColor: 'rgb(0, 184, 148)',
-					borderColor: 'rgb(0, 184, 148)',
+					borderColor: 'rgb(0, 158, 127)',
 					data: sensor.batt
 				}
 			]
