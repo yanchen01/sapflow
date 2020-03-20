@@ -10,7 +10,6 @@
 	"author": "Yan Chen",
 	"license": "ISC",
 	"dependencies": {
-		"axios": "^0.19.2",
 		"body-parser": "^1.19.0",
 		"csv-parser": "^2.3.2",
 		"dotenv": "^8.2.0",
