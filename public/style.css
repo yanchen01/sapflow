@@ -513,6 +513,9 @@ h1.site-title {
 	.main-navigation .menu {
 		display: none;
 	}
+	.site-description {
+		display: none;
+	}
 }
 .main-navigation .menu .menu-item {
 	float: left;
