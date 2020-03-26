@@ -39,11 +39,6 @@ const Tree = require('./models/tree');
 const Sensor = require('./models/sensor');
 const Data = require('./models/data');
 
-/* // middleware
-const parseDay = require('./parseData');
-const objArr = parseDay();
-console.log(objArr); */
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
@@ -120,7 +115,6 @@ app.get('/sensor', (req, res) => {
 
 // POST - collect data from sensor
 app.post('/sensor', (req, res) => {
-
 	// sensor model
 	const sensorData = {
 		app_id: req.body.app_id,

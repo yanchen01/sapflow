@@ -596,6 +596,8 @@ h1.site-title {
 	list-style: none;
 	*zoom: 1;
 }
+
+
 .hero .slides:after {
 	content: " ";
 	clear: both;
@@ -622,10 +624,12 @@ h1.site-title {
 	font-size: 60px;
 	font-size: 4em;
 	font-weight: 300;
+	color: #ffffff;
 }
 .hero .slide-content p {
 	font-size: 24px;
 	font-size: 1.6em;
+	color: #ffffff;
 }
 .hero .slide-content .button,
 .hero .slide-content form input[type="submit"],
