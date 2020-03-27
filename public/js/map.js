@@ -41,10 +41,13 @@ async function loadMap() {
     let markers = [];
 
 	nodes.forEach((node) => {
-        const marker = L.marker([ node.lat, node.long ]).addTo(map)
-		marker.bindPopup(` <p> Device ID: ${node.dev_id} </p>
-		<p> <a href="/sensor/${node.dev_id}"> See Sensor Data </a> </p>`);
-		markers.push(marker);
+		if (node.lat != undefined && node.long != undefined) {
+			const marker = L.marker([ node.lat, node.long ]).addTo(map)
+			marker.bindPopup(` <p> Device ID: ${node.dev_id} </p>
+			<p> Latitude: ${node.lat} &nbsp; Longitude: ${node.long} </p>
+			<p> <a href="/sensor/${node.dev_id}"> See Sensor Data </a> </p>`);
+			markers.push(marker);
+		}
 	});
 
 	const circle = L.circle([ 42.350085, -71.10402 ], {
@@ -54,13 +57,6 @@ async function loadMap() {
 		radius: 400
 	}).addTo(map);
 	
-	const circle = L.circle([ 42.350085, -71.10402 ], {
-		color: 'green',
-		fillColor: '#0aad72',
-		fillOpacity: 0.4,
-		radius: 400
-	}).addTo(map);
-
 	circle.bindPopup(`<h6> Forest Number: 1 </h6>`)
 }
 
