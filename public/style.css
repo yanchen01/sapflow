@@ -727,6 +727,7 @@ form .hero .slide-content input[type="reset"] {
 	border-radius: 10px;
 	padding: 30px;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	height: 35vh;
 }
 .feature .feature-image {
 	margin-bottom: 20px;
