@@ -53,6 +53,13 @@ async function loadMap() {
 		fillOpacity: 0.4,
 		radius: 400
 	}).addTo(map);
+	
+	const circle = L.circle([ 42.350085, -71.10402 ], {
+		color: 'green',
+		fillColor: '#0aad72',
+		fillOpacity: 0.4,
+		radius: 400
+	}).addTo(map);
 
 	circle.bindPopup(`<h6> Forest Number: 1 </h6>`)
 }
