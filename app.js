@@ -200,6 +200,7 @@ app.put('/sensor/:dev_id', (req, res) => {
 	// find all sensor documents and update the fields
 	Sensor.updateMany({ dev_id: req.params.dev_id }, req.body.sensor)
 		.then((result) => {
+			console.log('Updated Sensor Info');
 			res.redirect('/sensor/');
 		})
 		.catch((err) => {

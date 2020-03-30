@@ -61,7 +61,7 @@
                         <tr>
                             <th scope="row"> <%= i %> </th>
                             <td><%= sensor.dev_id %> </td>
-                            <td> <%= `(${sensor.long}, ${sensor.lat})` %> </td>
+                            <td> <%= `(${sensor.lat}, ${sensor.long})` %> </td>
                             <td> <a class="btn editBtn" href="/sensor/<%= sensor.dev_id %>/edit"> Edit </a></td>
                         </tr>
                         <% }); %>
