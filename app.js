@@ -212,9 +212,17 @@ app.put('/sensor/:dev_id', (req, res) => {
 
 // EDIT - edit the sensor document fields
 app.get('/sensor/:dev_id/edit', (req, res) => {
+	let doc = {};
 	Sensor.find({ dev_id: req.params.dev_id })
 		.then((sensorArr) => {
-			res.render('./sensors/edit', { sensor: sensorArr.slice(-1)[0] });
+			for (i = 0; i < sensorArr.length; i++) {
+				if (sensorArr[i].lat != undefined && sensorArr[i].long != undefined && sensorArr[i].forest != undefined) {
+					doc = sensorArr[i];
+					break;
+				}
+			}
+
+			res.render('./sensors/edit', { sensor: doc });
 		})
 		.catch((err) => {
 			console.log(err);
