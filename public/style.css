@@ -1191,11 +1191,6 @@ figure img {
 	background-color: #edf2f4;
 }
 
-.editBtn {
-	color: #212529;
-	background-color: #f2f4f5;
-}
-
 @media screen and (max-width: 450px) {
 	.chart {
 		display: block;

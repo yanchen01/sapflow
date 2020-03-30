@@ -122,6 +122,7 @@ app.get('/sensor', (req, res) => {
 					let sensor = {
 						_id: result[i]._id,
 						dev_id: result[i].dev_id,
+						forest: result[i].forest,
 						long: result[i].long,
 						lat: result[i].lat
 					};
