@@ -1,0 +1,136 @@
+<%- include('../partials/header') %>
+
+</head>
+
+<body>
+
+    <div class="site-content">
+        <header class="site-header" data-bg-image="">
+            <div class="container">
+                <div class="header-bar">
+                    <a href="/" class="branding">
+                        <img src="./images/logo/logo_resize.jpg" alt="" class="logo">
+                        <div class="logo-type">
+                            <h1 class="site-title">Hutyra Research Lab</h1>
+                            <small class="site-description">Carbon Cycle Science, Urbanization, Global Change, and
+                                Ecosystem Ecology.</small>
+                        </div>
+                    </a>
+
+                    <nav class="main-navigation">
+                        <button class="menu-toggle"><i class="fa fa-bars"></i></button>
+                        <ul class="menu">
+                            <li class="home menu-item"><a href="/"><img src="./images/home-icon.png" alt="Home"></a>
+                            </li>
+                            <li class="menu-item"><a href="#about">About</a></li>
+                            <li class="menu-item current-menu-item"><a href="/sensor">Sensor Data</a></li>
+                            <li class="menu-item"><a href="#contact">Contact</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="mobile-navigation"></div>
+                </div>
+            </div>
+        </header>
+        <br>
+
+        <h2 style="text-align: center;">Edit Sensor Information </h2>
+
+        <div style="width: 30%; margin:25px auto;">
+            <form action="/sensor/<%=sensor.dev_id%>?_method=PUT" method="POST">
+                <div class="form-group">
+                    <label for="device-id">Device ID:</label>
+                    <input type="text" class="form-control" name="sensor[dev_id]" value="<%= sensor.dev_id %>">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="lat">Latitude:</label>
+                        <input type="text" class="form-control" name="sensor[lat]" value="<%= sensor.lat %>" placeholder="Latitude">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="long">Longitude:</label>
+                        <input type="text" class="form-control" name="sensor[long]" value="<%= sensor.long %>" placeholder="Longitude">
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col-md-6">
+                        <label for="species">Tree Species:</label>
+                        <input type="text" class="form-control" name="sensor[species]" value="<%= sensor.species %>" placeholder="<%= sensor.species %>">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="tree-id">Tree ID:</label>
+                        <input type="text" class="form-control" name="sensor[tree_id]" value="<%= sensor.tree_id %>" placeholder="<%= sensor.tree_id %>">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                </div>
+                <a class="btn btn-lg btn-primary btn-block" href="/sensor"> Go Back </a>
+
+            </form>
+        </div>
+
+
+
+
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="widget">
+                            <h3 class="widget-title">Our address</h3>
+                            <strong>Hutyra Research Lab</strong>
+                            <address>685 Commonwealth Ave. Boston, MA 02215</address>
+                            <a href="tel:+1 617-353-5743">+1 617-353-5743</a> <br>
+                            <a href="mailto:office@companyname.com">office@companyname.com</a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="widget">
+                            <h3 class="widget-title">Research summary</h3>
+                            <ul class="arrow-list">
+                                <li><a href="#">Carbon Cycle Science</a></li>
+                                <li><a href="#">Urbanization</a></li>
+                                <li><a href="#">Global Change</a></li>
+                                <li><a href="#">Ecosystem Ecology</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="widget">
+                            <h3 class="widget-title">Social media</h3>
+                            <p>Deserunt mollitia animi id est laborum dolorum fuga harum quidem rerum facilis.</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-google-plus"></i></a>
+                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- .row -->
+
+            </div> <!-- .container -->
+        </footer>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/app.js"></script>
+
+</body>
+
+</html>

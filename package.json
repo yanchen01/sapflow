@@ -15,6 +15,7 @@
 		"dotenv": "^8.2.0",
 		"ejs": "^3.0.1",
 		"express": "^4.17.1",
+		"method-override": "^3.0.0",
 		"moment": "^2.24.0",
 		"mongoose": "^5.9.4",
 		"nodemon": "^2.0.2",

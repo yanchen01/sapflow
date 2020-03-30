@@ -10,7 +10,6 @@ async function getKey() {
 
 async function getLatlng() {
 	await fetch('/map').then((res) => res.json()).then((data) => {
-		console.log(data);
 		data.data.forEach((doc) => {
 			if (!dev_id.includes(doc.dev_id)) {
 				dev_id.push(doc.dev_id);

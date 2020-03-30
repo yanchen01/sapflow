@@ -1,5 +1,6 @@
 const express = require('express'),
 	bodyParser = require('body-parser'),
+	methodOverride = require('method-override'),
 	mongoose = require('mongoose');
 
 const app = express();
@@ -42,6 +43,7 @@ const Data = require('./models/data');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
+app.use(methodOverride('_method'));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
@@ -110,7 +112,30 @@ app.get('/chart/week', (req, res) => {
 
 // GET - see all sensor data
 app.get('/sensor', (req, res) => {
-	res.render('./sensors/index');
+	let sensorArr = [];
+	let dev_id = [];
+	Sensor.find({})
+		.then((result) => {
+			for (i = 0; i < result.length; i++) {
+				// if unique doc
+				if (!dev_id.includes(result[i].dev_id)) {
+					let sensor = {
+						_id: result[i]._id,
+						dev_id: result[i].dev_id,
+						long: result[i].long,
+						lat: result[i].lat
+					};
+					dev_id.push(result[i].dev_id);
+					sensorArr.push(sensor);
+				}
+			}
+			console.log('Before render');
+			console.log(sensorArr);
+			res.render('./sensors/index', { sensorArr: sensorArr });
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 });
 
 // POST - collect data from sensor
@@ -168,64 +193,35 @@ app.get('/sensor/:dev_id', (req, res) => {
 		.catch((err) => {
 			console.log(err);
 		});
+});
 
-	/* 	Sensor.find({ dev_id: req.params.dev_id })
-		// return an array of sensors
-		// correct sensor is always first element of the array
-		.then((sensorArr) => {
-			console.log(sensorArr[0]);
-			let dataObjArray = [];
-
-			sensorArr[0].data.forEach((dataID) => {
-				Data.find({
-					_id: dataID,
-					date: {
-						$gte: parseTime,
-						$lte: currentTime
-					}
-				})
-					.then((result) => {
-						// console.log(result[0]);
-						if (result[0] !== undefined) {
-							const dataObj = {
-								date: result[0].date,
-								batt: result[0].batt,
-								snr1: result[0].snr1,
-								snr2: result[0].snr2,
-								snr3: result[0].snr3,
-								snr4: result[0].snr4,
-								teq1: result[0].teq1,
-								teq2: result[0].teq2,
-								teq3: result[0].teq3,
-								teq4: result[0].teq4
-							};
-							// append the obj to array
-							dataObjArray.push(dataObj);
-							dataObjArray.forEach((obj) => {
-								console.log(obj);
-							});
-							console.log('pushed');
-						}
-					})
-					.catch((err) => {
-						console.log(err);
-					});
-			});
-			console.log('rendering');
-			dataObjArray.forEach((obj) => {
-				console.log(obj);
-			});
-			res.render('./sensors/show');
+// UPDATE - update sensor collection
+app.put('/sensor/:dev_id', (req, res) => {
+	// find all sensor documents and update the fields
+	Sensor.updateMany({ dev_id: req.params.dev_id }, req.body.sensor)
+		.then((result) => {
+			res.redirect('/sensor/');
 		})
 		.catch((err) => {
 			console.log(err);
-		}); */
+			res.redirect('/sensor');
+		});
+});
+
+// EDIT - edit the sensor document fields
+app.get('/sensor/:dev_id/edit', (req, res) => {
+	Sensor.find({ dev_id: req.params.dev_id })
+		.then((sensorArr) => {
+			res.render('./sensors/edit', { sensor: sensorArr.slice(-1)[0] });
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 });
 
 app.get('/map', (req, res) => {
 	Sensor.find({})
 		.then((result) => {
-			console.log(result);
 			res.json({ success: true, data: result });
 		})
 		.catch((err) => {
