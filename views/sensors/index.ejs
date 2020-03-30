@@ -61,6 +61,8 @@
                             <th scope="col">#</th>
                             <th scope="col">Device ID</th>
                             <th scope="col">Forest</th>
+                            <th scope="col">Tree Species</th>
+                            <th scope="col">Tree ID</th>
                             <th scope="col">Geo Location</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -71,6 +73,8 @@
                             <th scope="row"> <%= i %> </th>
                             <td><%= sensor.dev_id %> </td>
                             <td><%= sensor.forest %> </td>
+                            <td><%= sensor.species %> </td>
+                            <td><%= sensor.tree_id %> </td>
                             <td> <%= `(${sensor.lat}, ${sensor.long})` %> </td>
                             <td> <a href="/sensor/<%= sensor.dev_id %>/edit"> <button
                                         class="btn btn-sm btn-outline-info"> Edit</button> </a>

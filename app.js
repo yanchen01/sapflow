@@ -192,14 +192,14 @@ app.get('/sensor', middleware.isLoggedIn, (req, res) => {
 						dev_id: result[i].dev_id,
 						forest: result[i].forest,
 						long: result[i].long,
-						lat: result[i].lat
+						lat: result[i].lat,
+						tree_id: result[i].tree_id,
+						species: result[i].species,
 					};
 					dev_id.push(result[i].dev_id);
 					sensorArr.push(sensor);
 				}
 			}
-			console.log('Before render');
-			console.log(sensorArr);
 			res.render('./sensors/index', { sensorArr: sensorArr, currentUser: req.user });
 		})
 		.catch((err) => {
