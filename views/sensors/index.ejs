@@ -64,8 +64,8 @@
                             <td><%= sensor.dev_id %> </td>
                             <td><%= sensor.forest %> </td>
                             <td> <%= `(${sensor.lat}, ${sensor.long})` %> </td>
-                            <td> <a href="/sensor/<%= sensor.dev_id %>/edit"> <button class="btn btn-outline-info"> Edit</button>  </a>
-                                 <a href="/sensor/<%= sensor.dev_id %>"> <button class="btn btn-outline-primary"> Charts </button></a> 
+                            <td> <a href="/sensor/<%= sensor.dev_id %>/edit"> <button class="btn btn-sm btn-outline-info"> Edit</button>  </a>
+                                 <a href="/sensor/<%= sensor.dev_id %>"> <button class="btn btn-sm btn-outline-primary"> Charts </button></a> 
                             </td>
                         </tr>
                         <% }); %>
