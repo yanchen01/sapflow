@@ -23,6 +23,7 @@ const SensorSchema = mongoose.Schema({
 	lat: Number,
 	long: Number,
 	species: String,
+	forest: String,
 	tree_id: Number,
 	date: { type: Date, default: Date.now },
 	downlink_url: String

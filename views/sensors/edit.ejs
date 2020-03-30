@@ -53,12 +53,15 @@
                     </div>
                 </div>
                 <div class="form-row">
-
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
+                        <label for="species">Forest:</label>
+                        <input type="text" class="form-control" name="sensor[species]" value="<%= sensor.forest %>" placeholder="<%= sensor.forest %>">
+                    </div>
+                    <div class="form-group col-md-4">
                         <label for="species">Tree Species:</label>
                         <input type="text" class="form-control" name="sensor[species]" value="<%= sensor.species %>" placeholder="<%= sensor.species %>">
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="tree-id">Tree ID:</label>
                         <input type="text" class="form-control" name="sensor[tree_id]" value="<%= sensor.tree_id %>" placeholder="<%= sensor.tree_id %>">
                     </div>
