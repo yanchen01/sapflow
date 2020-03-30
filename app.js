@@ -1,7 +1,11 @@
 const express = require('express'),
 	bodyParser = require('body-parser'),
 	methodOverride = require('method-override'),
-	mongoose = require('mongoose');
+	mongoose = require('mongoose'),
+	passport = require('passport'),
+	LocalStrategy = require('passport-local'),
+	flash = require('connect-flash'),
+	middleware = require('./middleware/index');
 
 const app = express();
 const http = require('http').createServer(app);
@@ -39,35 +43,94 @@ mongoose
 const Tree = require('./models/tree');
 const Sensor = require('./models/sensor');
 const Data = require('./models/data');
+const User = require('./models/user');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
 app.use(express.static(__dirname + '/public'));
+app.use(flash());
+
+// PASSPORT CONFIG
+app.use(
+	require('express-session')({
+		secret: 'Sapflow Project',
+		resave: false,
+		saveUninitialized: false
+	})
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use(function(req, res, next) {
+	res.locals.currentUser = req.user;
+	res.locals.error = req.flash('error');
+	res.locals.success = req.flash('success');
+	next();
+});
 
 app.get('/', (req, res) => {
-	// get all trees and pass into index
-	Tree.find({})
-		.then((trees) => {
-			res.render('index', { trees });
-		})
-		.catch((err) => {
-			console.log(err);
-		});
+	res.render('index', { currentUser: req.user });
 });
 
-// SHOW - information about a tree
-app.get('/tree/:id', (req, res) => {
-	Tree.findById(req.params.id)
-		.then((tree) => {
-			res.render('./trees/show', { tree });
-		})
-		.catch((err) => {
-			console.log(err);
-		});
+//
+// 	REGISTER
+//
+
+// SHOW - Login form
+app.get('/register', (req, res) => {
+	res.render('register');
 });
 
+// SHOW - Login form
+app.post('/register', (req, res) => {
+	let newUser = new User({ username: req.body.username });
+
+	User.register(newUser, req.body.password, (err, user) => {
+		if (err) {
+			req.flash('error', err.message);
+			return res.redirect('register');
+		} else {
+			passport.authenticate('local')(req, res, () => {
+				req.flash('success', 'Registered as ' + user.username);
+				res.redirect('/');
+			});
+		}
+	});
+});
+
+//
+// 	LOGIN
+//
+
+
+// SHOW - Login form
+app.get('/login', (req, res) => {
+	res.render('login');
+});
+// Handle login logic
+app.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }), (req, res) => {
+	res.send('Login Success');
+});
+
+// logout route
+app.get('/logout', (req, res) => {
+	req.logOut();
+	req.flash('success', 'Logged out.');
+	res.redirect('/');
+});
+
+//
+// 	CHART
+//
+
+
+// API for fetching data to plot chart for past 24 hrs
 app.get('/chart', (req, res) => {
 	const currentTime = new Date().toISOString();
 	let parseTime = new Date().setDate(new Date().getDate() - 1); // parse from last 24 hrs
@@ -88,7 +151,7 @@ app.get('/chart', (req, res) => {
 			console.log(err);
 		});
 });
-
+// API for fetching data to plot chart for past week
 app.get('/chart/week', (req, res) => {
 	const currentTime = new Date().toISOString();
 	let parseTime = new Date().setDate(new Date().getDate() - 7); // parse from past week
@@ -110,8 +173,13 @@ app.get('/chart/week', (req, res) => {
 		});
 });
 
+
+//
+// 	SENSOR
+//
+
 // GET - see all sensor data
-app.get('/sensor', (req, res) => {
+app.get('/sensor', middleware.isLoggedIn, (req, res) => {
 	let sensorArr = [];
 	let dev_id = [];
 	Sensor.find({})
@@ -132,7 +200,7 @@ app.get('/sensor', (req, res) => {
 			}
 			console.log('Before render');
 			console.log(sensorArr);
-			res.render('./sensors/index', { sensorArr: sensorArr });
+			res.render('./sensors/index', { sensorArr: sensorArr, currentUser: req.user });
 		})
 		.catch((err) => {
 			console.log(err);
@@ -174,7 +242,7 @@ app.post('/sensor', (req, res) => {
 });
 
 // SHOW - information about a sensor
-app.get('/sensor/:dev_id', (req, res) => {
+app.get('/sensor/:dev_id', middleware.isLoggedIn, (req, res) => {
 	const currentTime = new Date().toISOString();
 	let parseTime = new Date().setDate(new Date().getDate() - 1); // parse from last 24 hrs
 	parseTime = new Date(parseTime).toISOString();
@@ -211,12 +279,16 @@ app.put('/sensor/:dev_id', (req, res) => {
 });
 
 // EDIT - edit the sensor document fields
-app.get('/sensor/:dev_id/edit', (req, res) => {
+app.get('/sensor/:dev_id/edit', middleware.isLoggedIn, (req, res) => {
 	let doc = {};
 	Sensor.find({ dev_id: req.params.dev_id })
 		.then((sensorArr) => {
 			for (i = 0; i < sensorArr.length; i++) {
-				if (sensorArr[i].lat != undefined && sensorArr[i].long != undefined && sensorArr[i].forest != undefined) {
+				if (
+					sensorArr[i].lat != undefined &&
+					sensorArr[i].long != undefined &&
+					sensorArr[i].forest != undefined
+				) {
 					doc = sensorArr[i];
 					break;
 				}
@@ -228,6 +300,10 @@ app.get('/sensor/:dev_id/edit', (req, res) => {
 			console.log(err);
 		});
 });
+
+//
+// 	MAP
+//
 
 app.get('/map', (req, res) => {
 	Sensor.find({})

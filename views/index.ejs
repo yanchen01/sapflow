@@ -3,9 +3,10 @@
 </head>
 
 <body>
+    <%- include('./partials/flash') %>
+
 
     <div>
-
         <div class="site-content">
             <header class="site-header collapsed-nav" data-bg-image="">
                 <div class="container">
@@ -27,6 +28,12 @@
                                 <li class="menu-item"><a href="#about">About</a></li>
                                 <li class="menu-item"><a href="/sensor">Sensor Data</a></li>
                                 <li class="menu-item"><a href="#contact">Contact</a></li>
+                                <% if (currentUser) { %>
+                                <li class="menu-item"> <a href="#"> Signed In </a> </li>
+                                <li class="menu-item"><a href="/logout">Logout</a></li>
+                                <% } else { %>
+                                <li class="menu-item"><a href="/login">Login</a></li>
+                                <% } %>
                             </ul>
                         </nav>
 
@@ -115,7 +122,7 @@
                     </div> <!-- .container -->
                 </div> <!-- .fullwidth-block -->
 
-<!--                 <div class="fullwidth-block" data-bg-color="#edf2f4">
+                <!--                 <div class="fullwidth-block" data-bg-color="#edf2f4">
                     <div class="container">
                         <h2 class="section-title">Latest News</h2>
                         <div class="row">
@@ -169,10 +176,12 @@
                             <div class="col-md-4">
                                 <h2 class="section-title">Research Summaries</h2>
                                 <ul class="arrow-list has-border">
-                                    <li><a href="http://sites.bu.edu/hutyra/research-projects/">Carbon Cycle Science</a></li>
+                                    <li><a href="http://sites.bu.edu/hutyra/research-projects/">Carbon Cycle Science</a>
+                                    </li>
                                     <li><a href="http://sites.bu.edu/hutyra/research-projects/">Urbanization</a></li>
                                     <li><a href="http://sites.bu.edu/hutyra/research-projects/">Global Change</a></li>
-                                    <li><a href="http://sites.bu.edu/hutyra/research-projects/">Ecosystem Ecology</a></li>
+                                    <li><a href="http://sites.bu.edu/hutyra/research-projects/">Ecosystem Ecology</a>
+                                    </li>
                                 </ul>
                                 <a href="http://sites.bu.edu/hutyra/research-projects/" class="button">Show more</a>
                             </div>
@@ -180,7 +189,7 @@
                     </div>
                 </div>
 
-<!--                 <div class="fullwidth-block cta" data-bg-image="./images/cta-bg.jpg">
+                <!--                 <div class="fullwidth-block cta" data-bg-image="./images/cta-bg.jpg">
                     <div class="container">
                         <h2 class="cta-title">Neque porro quisquam</h2>
                         <p>Modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem enim ad minima
@@ -193,7 +202,7 @@
                     </div>
                 </div> -->
 
-<!--                 <div class="fullwidth-block" data-bg-color="#edf2f4">
+                <!--                 <div class="fullwidth-block" data-bg-color="#edf2f4">
                     <div class="container">
                         <div class="subscribe-form">
                             <h2>Join our newsletter</h2>

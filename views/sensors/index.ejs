@@ -9,6 +9,8 @@
 </head>
 
 <body>
+    <%- include('../partials/flash') %>
+
     <div>
         <div class="site-content">
             <header class="site-header" data-bg-image="">
@@ -31,6 +33,12 @@
                                 <li class="menu-item"><a href="#about">About</a></li>
                                 <li class="menu-item current-menu-item"><a href="/sensor">Sensor Data</a></li>
                                 <li class="menu-item"><a href="#contact">Contact</a></li>
+                                <% if (currentUser) { %>
+                                <li class="menu-item"> <a href="#"> Signed In</a> </li>
+                                <li class="menu-item"><a href="/logout">Logout</a></li>
+                                <% } else { %>
+                                <li class="menu-item"><a href="/login">Login</a></li>
+                                <% } %>
                             </ul>
                         </nav>
 
@@ -64,8 +72,10 @@
                             <td><%= sensor.dev_id %> </td>
                             <td><%= sensor.forest %> </td>
                             <td> <%= `(${sensor.lat}, ${sensor.long})` %> </td>
-                            <td> <a href="/sensor/<%= sensor.dev_id %>/edit"> <button class="btn btn-sm btn-outline-info"> Edit</button>  </a>
-                                 <a href="/sensor/<%= sensor.dev_id %>"> <button class="btn btn-sm btn-outline-primary"> Charts </button></a> 
+                            <td> <a href="/sensor/<%= sensor.dev_id %>/edit"> <button
+                                        class="btn btn-sm btn-outline-info"> Edit</button> </a>
+                                <a href="/sensor/<%= sensor.dev_id %>"> <button class="btn btn-sm btn-outline-primary">
+                                        Charts </button></a>
                             </td>
                         </tr>
                         <% }); %>

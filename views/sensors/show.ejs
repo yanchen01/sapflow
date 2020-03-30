@@ -3,6 +3,8 @@
 </head>
 
 <body>
+    <%- include('../partials/flash') %>
+
 
     <div class="site-content">
         <header class="site-header" data-bg-image="">
@@ -20,8 +22,8 @@
                     <nav class="main-navigation">
                         <button class="menu-toggle"><i class="fa fa-bars"></i></button>
                         <ul class="menu">
-                            <li class="home menu-item"><a href="/"><img
-                                        src="./images/home-icon.png" alt="Home"></a></li>
+                            <li class="home menu-item"><a href="/"><img src="./images/home-icon.png" alt="Home"></a>
+                            </li>
                             <li class="menu-item"><a href="#about">About</a></li>
                             <li class="menu-item current-menu-item"><a href="/sensor">Sensor Data</a></li>
                             <li class="menu-item"><a href="#contact">Contact</a></li>
@@ -47,19 +49,22 @@
                         <div class="card mb-5">
                             <div>
                                 <h3 style="text-align: center;"> Battery Chart </h3>
-                                <canvas class="chart" id="battChart" style="display: block; width: 700px; height: 450px;"></canvas>
+                                <canvas class="chart" id="battChart"
+                                    style="display: block; width: 700px; height: 450px;"></canvas>
                             </div>
                         </div>
                         <div class="card mb-5">
                             <div>
                                 <h3 style="text-align: center;"> SNR Chart </h3>
-                                <canvas class="chart" id="snrChart" style="display: block; width: 700px; height: 450px;"></canvas>
+                                <canvas class="chart" id="snrChart"
+                                    style="display: block; width: 700px; height: 450px;"></canvas>
                             </div>
                         </div>
                         <div class="card mb-5">
                             <div>
                                 <h3 style="text-align: center;"> TEQ Chart </h3>
-                                <canvas class="chart" id="teqChart" style="display: block; width: 700px; height: 450px;"></canvas>
+                                <canvas class="chart" id="teqChart"
+                                    style="display: block; width: 700px; height: 450px;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -77,7 +82,7 @@
                             <a href="mailto:office@companyname.com">office@companyname.com</a>
                         </div>
                     </div>
-                    
+
                     <div class="col-md-4">
                         <div class="widget">
                             <h3 class="widget-title">Research summary</h3>

@@ -1,0 +1,60 @@
+<%- include('./partials/header') %>
+
+</head>
+
+<body>
+    <%- include('./partials/flash') %>
+    <div>
+
+        <div class="site-content">
+
+
+            <header class="site-header" data-bg-image="">
+                <div class="container">
+                    <div class="header-bar">
+                        <a href="/" class="branding">
+                            <img src="./images/logo/logo_resize.jpg" alt="" class="logo">
+                            <div class="logo-type">
+                                <h1 class="site-title">Hutyra Research Lab</h1>
+                                <small class="site-description">Carbon Cycle Science, Urbanization, Global Change, and
+                                    Ecosystem Ecology.</small>
+                            </div>
+                        </a>
+
+                        <nav class="main-navigation">
+                            <button class="menu-toggle"><i class="fa fa-bars"></i></button>
+                            <ul class="menu">
+                                <li class="home menu-item"><a href="/"><img src="./images/home-icon.png" alt="Home"></a>
+                                </li>
+                                <li class="menu-item"><a href="#about">About</a></li>
+                                <li class="menu-item"><a href="/sensor">Sensor Data</a></li>
+                                <li class="menu-item"><a href="#contact">Contact</a></li>
+                                <li class="menu-item current-menu-item"><a href="/login">Login</a></li>
+                            </ul>
+                        </nav>
+
+                        <div class="mobile-navigation"></div>
+                    </div>
+                </div>
+            </header>
+
+            <div style="width: 30%; margin:25px auto;">
+                <form action="/login" method="POST">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" name="username" placeholder="Enter Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" name="password" placeholder="Enter Password">
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-success btn-block">Login</button>
+                    </div>
+                </form>
+                <a class="btn btn-lg btn-primary btn-block" href="/"> Go Back </a>
+            </div>
+        </div>
+
+        <%- include('./partials/footer') %>
