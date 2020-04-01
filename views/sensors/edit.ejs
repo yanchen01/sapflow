@@ -27,6 +27,12 @@
                             <li class="menu-item"><a href="#about">About</a></li>
                             <li class="menu-item current-menu-item"><a href="/sensor">Sensor Data</a></li>
                             <li class="menu-item"><a href="#contact">Contact</a></li>
+                            <% if (currentUser) { %>
+                                <li class="menu-item"> <a href="#"> Signed In </a> </li>
+                                <li class="menu-item"><a href="/logout">Logout</a></li>
+                                <% } else { %>
+                                <li class="menu-item"><a href="/login">Login</a></li>
+                                <% } %>
                         </ul>
                     </nav>
 

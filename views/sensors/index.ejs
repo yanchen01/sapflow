@@ -80,6 +80,10 @@
                                         class="btn btn-sm btn-outline-info"> Edit</button> </a>
                                 <a href="/sensor/<%= sensor.dev_id %>"> <button class="btn btn-sm btn-outline-primary">
                                         Charts </button></a>
+                                <a href="/sensor/<%= sensor.dev_id %>/download"> <button class="btn btn-sm btn-outline-primary">
+                                        Download Daily Data </button></a>
+                                <a href="/sensor/<%= sensor.dev_id %>/download/week"> <button class="btn btn-sm btn-outline-primary">
+                                        Download Weekly Data </button></a>
                             </td>
                         </tr>
                         <% }); %>
