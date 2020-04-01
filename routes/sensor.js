@@ -190,7 +190,7 @@ router.get('/:dev_id/download', middleware.isLoggedIn, (req, res) => {
 							res.setHeader('Content-Type', 'text/csv');
 							res.setHeader(
 								'Content-Disposition',
-								'attachment; filename="' + req.params.dev_id + '_week_' + Date.now() + '.csv"'
+								'attachment; filename="' + req.params.dev_id + '_day_' + Date.now() + '.csv"'
 							);
 							res.setHeader('Cache-Control', 'no-cache');
 							res.setHeader('Pragma', 'no-cache');

@@ -25,7 +25,6 @@ router.get('/', (req, res) => {
 });
 
 router.get('/token', (req, res) => {
-    console.log(mapKey);
 	res.json({ success: true, key: mapKey });
 });
 
