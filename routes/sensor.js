@@ -54,8 +54,8 @@ router.post('/', (req, res) => {
 		teq2: req.body.payload_fields.teq2,
 		teq3: req.body.payload_fields.teq3,
 		teq4: req.body.payload_fields.teq4,
-		lat: req.body.payload_fields.lat,
-		long: req.body.payload_fields.long,
+/* 		lat: req.body.payload_fields.lat,
+		long: req.body.payload_fields.long, */
 		time: req.body.metadata.time
 	};
 
