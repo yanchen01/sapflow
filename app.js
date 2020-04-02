@@ -87,9 +87,9 @@ app.use(function(req, res, next) {
 });
 
 app.use(indexRoutes);
+app.use('/sensor', sensorRoutes);
 app.use('/map', mapRoutes);
 app.use('/chart', chartRoutes);
-app.use('/sensor', sensorRoutes);
 
 http.listen(process.env.PORT || 3000, () => {
 	console.log('Hutyra Lab Server has started on port 3000');

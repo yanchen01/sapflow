@@ -59,7 +59,7 @@ router.post('/', (req, res) => {
 		time: req.body.metadata.time
 	};
 
-	new Sensor(sensorData)
+/* 	new Sensor(sensorData)
 		.save()
 		.then((sensor) => {
 			io.emit('update', true);
@@ -68,7 +68,15 @@ router.post('/', (req, res) => {
 		})
 		.catch((err) => {
 			console.log(err);
-		});
+		}); */
+	Sensor.create(sensorData, function (err, result) {
+		if (err) {
+			console.log(err);
+		}
+		io.emit('update', true);
+		console.log('emit new update');
+		return res.json('success');
+	})
 });
 
 // SHOW - information about a sensor
@@ -96,17 +104,19 @@ router.get('/:dev_id', middleware.isLoggedIn, (req, res) => {
 
 // EDIT - edit the sensor document fields
 router.get('/:dev_id/edit', middleware.isLoggedIn, (req, res) => {
-	let doc = {};
+	let doc = {dev_id: req.params.dev_id};
 	Sensor.find({ dev_id: req.params.dev_id })
 		.then((sensorArr) => {
-			doc = sensorArr.find(
-				(element) =>
-					element.lat != undefined &&
-					element.long != undefined &&
-					element.forest != undefined &&
-					element.tree_id != undefined &&
-					element.species != undefined
-			);
+			for (i = 0; i < sensorArr.length; i++) {
+				if (
+					sensorArr[i].lat != undefined &&
+					sensorArr[i].long != undefined &&
+					sensorArr[i].forest != undefined
+				) {
+					doc = sensorArr[i];
+					break;
+				}
+			}
 
 			res.render('./sensors/edit', { sensor: doc });
 		})
