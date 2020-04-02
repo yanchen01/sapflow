@@ -22,6 +22,8 @@ const indexRoutes = require('./routes/index'),
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
+app.set('socketio', io);
+
 io.on('connection', function(socket) {
 	console.log('a user connected');
 });

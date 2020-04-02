@@ -12,7 +12,7 @@ const app = express();
 // ------------------------------------------ //
 const Sensor = require('../models/sensor');
 
-// ------------------------------------------ //
+/* // ------------------------------------------ //
 // 			SOCKET.IO CONFIGURATION
 // ------------------------------------------ //
 const http = require('http').createServer(app);
@@ -20,7 +20,7 @@ const io = require('socket.io')(http);
 
 io.on('connection', function(socket) {
 	console.log('a user connected');
-});
+}); */
 
 //
 // 	SENSOR
@@ -85,6 +85,7 @@ router.post('/', (req, res) => {
 		if (err) {
 			console.log(err);
 		}
+		let io = req.app.get('socketio');
 		io.emit('update', true);
 		console.log('emit new update');
 		return res.json('success');
