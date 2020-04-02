@@ -5,10 +5,18 @@ const express = require('express'),
 	stringify = require('csv-stringify'),
 	middleware = require('../middleware/index');
 
+const app = express();
+
 // ------------------------------------------ //
 // 			MODELS CONFIG
 // ------------------------------------------ //
 const Sensor = require('../models/sensor');
+
+// ------------------------------------------ //
+// 			SOCKET.IO CONFIGURATION
+// ------------------------------------------ //
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 
 //
 // 	SENSOR
