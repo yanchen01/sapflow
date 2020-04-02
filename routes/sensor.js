@@ -18,6 +18,10 @@ const Sensor = require('../models/sensor');
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
+io.on('connection', function(socket) {
+	console.log('a user connected');
+});
+
 //
 // 	SENSOR
 //
@@ -62,12 +66,12 @@ router.post('/', (req, res) => {
 		teq2: req.body.payload_fields.teq2,
 		teq3: req.body.payload_fields.teq3,
 		teq4: req.body.payload_fields.teq4,
-/* 		lat: req.body.payload_fields.lat,
+		/* 		lat: req.body.payload_fields.lat,
 		long: req.body.payload_fields.long, */
 		time: req.body.metadata.time
 	};
 
-/* 	new Sensor(sensorData)
+	/* 	new Sensor(sensorData)
 		.save()
 		.then((sensor) => {
 			io.emit('update', true);
@@ -77,14 +81,14 @@ router.post('/', (req, res) => {
 		.catch((err) => {
 			console.log(err);
 		}); */
-	Sensor.create(sensorData, function (err, result) {
+	Sensor.create(sensorData, function(err, result) {
 		if (err) {
 			console.log(err);
 		}
 		io.emit('update', true);
 		console.log('emit new update');
 		return res.json('success');
-	})
+	});
 });
 
 // SHOW - information about a sensor
@@ -112,7 +116,7 @@ router.get('/:dev_id', middleware.isLoggedIn, (req, res) => {
 
 // EDIT - edit the sensor document fields
 router.get('/:dev_id/edit', middleware.isLoggedIn, (req, res) => {
-	let doc = {dev_id: req.params.dev_id};
+	let doc = { dev_id: req.params.dev_id };
 	Sensor.find({ dev_id: req.params.dev_id })
 		.then((sensorArr) => {
 			for (i = 0; i < sensorArr.length; i++) {
