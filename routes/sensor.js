@@ -16,26 +16,20 @@ const Sensor = require('../models/sensor');
 
 // GET - see all sensor data
 router.get('/', middleware.isLoggedIn, (req, res) => {
-	let sensorArr = [];
 	let dev_id = [];
+	// find all docs and filter out unique doc for a sensor
 	Sensor.find({})
-		.then((result) => {
-			for (i = 0; i < result.length; i++) {
-				// if unique doc
-				if (!dev_id.includes(result[i].dev_id)) {
-					let sensor = {
-						_id: result[i]._id,
-						dev_id: result[i].dev_id,
-						forest: result[i].forest,
-						long: result[i].long,
-						lat: result[i].lat,
-						tree_id: result[i].tree_id,
-						species: result[i].species
-					};
-					dev_id.push(result[i].dev_id);
-					sensorArr.push(sensor);
+		.then((resultArr) => {
+			let sensorArr = resultArr.filter((sensor) => {
+				if (!dev_id.includes(sensor.dev_id)) {
+					dev_id.push(sensor.dev_id);
+					return true;
+				} else {
+					return false;
 				}
-			}
+			});
+
+			console.log(sensorArr);
 			res.render('./sensors/index', { sensorArr: sensorArr, currentUser: req.user });
 		})
 		.catch((err) => {
@@ -100,6 +94,27 @@ router.get('/:dev_id', middleware.isLoggedIn, (req, res) => {
 		});
 });
 
+// EDIT - edit the sensor document fields
+router.get('/:dev_id/edit', middleware.isLoggedIn, (req, res) => {
+	let doc = {};
+	Sensor.find({ dev_id: req.params.dev_id })
+		.then((sensorArr) => {
+			doc = sensorArr.find(
+				(element) =>
+					element.lat != undefined &&
+					element.long != undefined &&
+					element.forest != undefined &&
+					element.tree_id != undefined &&
+					element.species != undefined
+			);
+
+			res.render('./sensors/edit', { sensor: doc });
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+});
+
 // UPDATE - update sensor collection
 router.put('/:dev_id', (req, res) => {
 	// find all sensor documents and update the fields
@@ -114,25 +129,15 @@ router.put('/:dev_id', (req, res) => {
 		});
 });
 
-// EDIT - edit the sensor document fields
-router.get('/:dev_id/edit', middleware.isLoggedIn, (req, res) => {
-	let doc = {};
-	Sensor.find({ dev_id: req.params.dev_id })
-		.then((sensorArr) => {
-			for (i = 0; i < sensorArr.length; i++) {
-				if (
-					sensorArr[i].lat != undefined &&
-					sensorArr[i].long != undefined &&
-					sensorArr[i].forest != undefined
-				) {
-					doc = sensorArr[i];
-					break;
-				}
-			}
-
-			res.render('./sensors/edit', { sensor: doc });
+// DELETE - delete a sensor documents
+router.delete('/:dev_id', middleware.isLoggedIn, (req, res) => {
+	Sensor.deleteMany({ dev_id: req.params.dev_id })
+		.then((result) => {
+			req.flash('success', 'Sensor Deleted');
+			res.redirect('/sensor');
 		})
 		.catch((err) => {
+			req.flash('error', err);
 			console.log(err);
 		});
 });
@@ -142,18 +147,14 @@ router.get('/:dev_id/download', middleware.isLoggedIn, (req, res) => {
 	// find the updated static fields
 	Sensor.find({ dev_id: req.params.dev_id })
 		.then((sensorArr) => {
-			for (i = 0; i < sensorArr.length; i++) {
-				if (
-					sensorArr[i].lat != undefined &&
-					sensorArr[i].long != undefined &&
-					sensorArr[i].forest != undefined &&
-					sensorArr[i].tree_id != undefined &&
-					sensorArr[i].species != undefined
-				) {
-					doc = sensorArr[i];
-					break;
-				}
-			}
+			doc = sensorArr.find(
+				(element) =>
+					element.lat != undefined &&
+					element.long != undefined &&
+					element.forest != undefined &&
+					element.tree_id != undefined &&
+					element.species != undefined
+			);
 
 			const currentTime = new Date().toISOString();
 			let parseTime = new Date().setDate(new Date().getDate() - 1); // parse from last 24 hrs
@@ -244,18 +245,14 @@ router.get('/:dev_id/download/week', middleware.isLoggedIn, (req, res) => {
 	// find the updated static fields
 	Sensor.find({ dev_id: req.params.dev_id })
 		.then((sensorArr) => {
-			for (i = 0; i < sensorArr.length; i++) {
-				if (
-					sensorArr[i].lat != undefined &&
-					sensorArr[i].long != undefined &&
-					sensorArr[i].forest != undefined &&
-					sensorArr[i].tree_id != undefined &&
-					sensorArr[i].species != undefined
-				) {
-					doc = sensorArr[i];
-					break;
-				}
-			}
+			doc = sensorArr.find(
+				(element) =>
+					element.lat != undefined &&
+					element.long != undefined &&
+					element.forest != undefined &&
+					element.tree_id != undefined &&
+					element.species != undefined
+			);
 
 			const currentTime = new Date().toISOString();
 			let parseTime = new Date().setDate(new Date().getDate() - 7); // parse from past week

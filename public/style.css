@@ -349,14 +349,21 @@ form button img,
 form input[type="reset"] img {
 	margin-right: 10px;
 }
+
 .button:hover,
 form input[type="submit"]:hover,
 form button:hover,
 form input[type="reset"]:hover {
 	box-shadow: inset 0 0 100px #66bb6a;
-	/* box-shadow: inset 0 0 100px #69acc7; */
 	color: white;
 }
+
+#delete-btn:hover {
+	box-shadow: inset 0 0 100px #dc3545;
+	color: white;
+}
+
+
 .button.white,
 form input.white[type="submit"],
 form button.white,

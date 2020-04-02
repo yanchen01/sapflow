@@ -4,7 +4,6 @@ let dev_id = [];
 
 async function getKey() {
 	await fetch('/map/token').then((res) => res.json()).then((data) => {
-		console.log(data.key);
 		mapKey = data.key;
 	});
 }

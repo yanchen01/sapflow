@@ -76,13 +76,19 @@
                             <td><%= sensor.species %> </td>
                             <td><%= sensor.tree_id %> </td>
                             <td> <%= `(${sensor.lat}, ${sensor.long})` %> </td>
-                            <td> <a href="/sensor/<%= sensor.dev_id %>/edit"> <button
+                            <td>
+                                <a href="/sensor/<%= sensor.dev_id %>/edit"> <button
                                         class="btn btn-sm btn-outline-info"> Edit</button> </a>
+                                <form class="delete-form" action="/sensor/<%= sensor.dev_id %>?_method=DELETE"
+                                    method="POST" style="display: inline-block;">
+                                    <a> <button  id="delete-btn" class="btn btn-sm btn-outline-danger"> Delete </button> </a> </form>
                                 <a href="/sensor/<%= sensor.dev_id %>"> <button class="btn btn-sm btn-outline-primary">
                                         Charts </button></a>
-                                <a href="/sensor/<%= sensor.dev_id %>/download"> <button class="btn btn-sm btn-outline-success">
+                                <a href="/sensor/<%= sensor.dev_id %>/download"> <button
+                                        class="btn btn-sm btn-outline-success">
                                         Download Daily Data </button></a>
-                                <a href="/sensor/<%= sensor.dev_id %>/download/week"> <button class="btn btn-sm btn-outline-success">
+                                <a href="/sensor/<%= sensor.dev_id %>/download/week"> <button
+                                        class="btn btn-sm btn-outline-success">
                                         Download Weekly Data </button></a>
                             </td>
                         </tr>
