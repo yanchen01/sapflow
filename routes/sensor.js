@@ -200,7 +200,6 @@ router.get('/:dev_id/download', middleware.isLoggedIn, (req, res) => {
 				}
 			)
 				.then((data) => {
-					console.log('Updated downloading docs');
 					Sensor.find({
 						dev_id: req.params.dev_id,
 						date: {
@@ -228,8 +227,13 @@ router.get('/:dev_id/download', middleware.isLoggedIn, (req, res) => {
 									'_id',
 									'app_id',
 									'dev_id',
-									'hardware_serial',
-									'downlink_url',
+									'species',
+									'tree_id',
+									'lat',
+									'long',
+									'time',
+									'date',
+									'forest',
 									'batt',
 									'snr1',
 									'snr2',
@@ -239,14 +243,9 @@ router.get('/:dev_id/download', middleware.isLoggedIn, (req, res) => {
 									'teq2',
 									'teq3',
 									'teq4',
-									'time',
-									'date',
-									'__v',
-									'forest',
-									'lat',
-									'long',
-									'species',
-									'tree_id'
+									'hardware_serial',
+									'downlink_url',
+									'__v'
 								]
 							}).pipe(res);
 						})
@@ -326,8 +325,13 @@ router.get('/:dev_id/download/week', middleware.isLoggedIn, (req, res) => {
 									'_id',
 									'app_id',
 									'dev_id',
-									'hardware_serial',
-									'downlink_url',
+									'species',
+									'tree_id',
+									'lat',
+									'long',
+									'time',
+									'date',
+									'forest',
 									'batt',
 									'snr1',
 									'snr2',
@@ -337,14 +341,9 @@ router.get('/:dev_id/download/week', middleware.isLoggedIn, (req, res) => {
 									'teq2',
 									'teq3',
 									'teq4',
-									'time',
-									'date',
-									'__v',
-									'forest',
-									'lat',
-									'long',
-									'species',
-									'tree_id'
+									'hardware_serial',
+									'downlink_url',
+									'__v'
 								]
 							}).pipe(res);
 						})
