@@ -12,16 +12,6 @@ const app = express();
 // ------------------------------------------ //
 const Sensor = require('../models/sensor');
 
-/* // ------------------------------------------ //
-// 			SOCKET.IO CONFIGURATION
-// ------------------------------------------ //
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
-
-io.on('connection', function(socket) {
-	console.log('a user connected');
-}); */
-
 //
 // 	SENSOR
 //
@@ -71,16 +61,6 @@ router.post('/', (req, res) => {
 		time: req.body.metadata.time
 	};
 
-	/* 	new Sensor(sensorData)
-		.save()
-		.then((sensor) => {
-			io.emit('update', true);
-			console.log('emit new update');
-			return res.json('success');
-		})
-		.catch((err) => {
-			console.log(err);
-		}); */
 	Sensor.create(sensorData, function(err, result) {
 		if (err) {
 			console.log(err);
